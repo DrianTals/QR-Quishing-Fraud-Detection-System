@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quishing Scanner — QR Phishing Risk Detector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>
+<style>
+  :root{
+    --ink:#0A0E1A;
+    --surface:#10182B;
+    --surface-2:#182339;
+    --surface-3:#1E2A44;
+    --line:#26314B;
+    --brand:#E8B33D;
+    --brand-dim: rgba(232,179,61,0.14);
+    --safe:#3ECF8E; --safe-dim:rgba(62,207,142,0.13);
+    --caution:#F0B429; --caution-dim:rgba(240,180,41,0.14);
+    --danger:#E2494C; --danger-dim:rgba(226,73,76,0.14);
+    --text:#E9ECF3;
+    --muted:#8D96AC;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0; padding:0;}
+  body{
+    background:var(--ink); color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .display{font-family:'Space Grotesk', sans-serif;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  ::selection{background:var(--brand); color:var(--ink);}
+  button{font-family:inherit; cursor:pointer;}
+  :focus-visible{outline:2px solid var(--brand); outline-offset:2px;}
+
+  /* ---------- Header ---------- */
+  header{
+    padding:22px 32px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
+    position:sticky; top:0; background:rgba(10,14,26,0.92); backdrop-filter:blur(8px); z-index:10;
+  }
+  .brand{display:flex; align-items:center; gap:11px;}
+  .brand-mark{width:30px; height:30px; flex-shrink:0;}
+  .brand h1{font-size:16.5px; margin:0; font-weight:700;}
+  .brand span{display:block; font-size:11.5px; color:var(--muted); margin-top:1px;}
+  .status-pill{
+    font-size:11px; font-family:'JetBrains Mono', monospace;
+    color:var(--muted); border:1px solid var(--line); border-radius:20px;
+    padding:6px 12px; display:flex; align-items:center; gap:7px;
+  }
+  .status-pill .dot{width:6px; height:6px; border-radius:50%; background:var(--safe); box-shadow:0 0 6px var(--safe);}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1180px; margin:0 auto; padding:36px 24px 80px;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start;}
+  @media (max-width:920px){ .grid{grid-template-columns:1fr;} }
+
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+  .panel-head{padding:18px 22px; border-bottom:1px solid var(--line);}
+  .panel-head .eyebrow{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:4px;}
+  .panel-head h2{font-size:16px; margin:0; font-weight:600;}
+  .panel-body{padding:22px;}
+
+  /* ---------- Tabs ---------- */
+  .tabs{display:flex; gap:6px; padding:14px 22px 0;}
+  .tab-btn{
+    flex:1; background:var(--surface-2); border:1px solid var(--line); border-bottom:none;
+    color:var(--muted); font-size:12.5px; font-weight:500; padding:10px 8px;
+    border-radius:8px 8px 0 0; transition:all .15s ease;
+  }
+  .tab-btn.active{background:var(--surface-3); color:var(--text); border-color:var(--line);}
+  .tab-panels{border-top:1px solid var(--line);}
+  .tab-panel{display:none; padding:22px;}
+  .tab-panel.active{display:block;}
+
+  /* Upload */
+  .dropzone{
+    border:1.5px dashed var(--line); border-radius:10px; padding:34px 20px;
+    text-align:center; color:var(--muted); font-size:13px; transition:border-color .15s ease, background .15s ease;
+    cursor:pointer;
+  }
+  .dropzone.drag{border-color:var(--brand); background:var(--brand-dim);}
+  .dropzone svg{margin-bottom:10px; opacity:.7;}
+  .dropzone b{color:var(--text);}
+  #fileInput{display:none;}
+  .preview-wrap{position:relative; margin-top:16px; border-radius:10px; overflow:hidden; border:1px solid var(--line); display:none;}
+  .preview-wrap img{width:100%; display:block;}
+  .scan-sweep{
+    position:absolute; left:0; right:0; height:2px; top:0;
+    background:linear-gradient(90deg, transparent, var(--brand), transparent);
+    box-shadow:0 0 10px 1px var(--brand);
+    animation: sweepY 1.4s linear infinite;
+  }
+  @keyframes sweepY{ 0%{top:0;} 100%{top:100%;} }
+
+  /* Camera */
+  .cam-wrap{position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:#000; aspect-ratio:4/3;}
+  .cam-wrap video{width:100%; height:100%; object-fit:cover; display:block;}
+  .reticle{position:absolute; inset:14%; border:2px solid var(--brand); border-radius:14px; opacity:.85; pointer-events:none;}
+  .reticle::before,.reticle::after{content:"";position:absolute; width:22px; height:22px; border-color:var(--brand);}
+  .cam-btn-row{display:flex; gap:10px; margin-top:14px;}
+
+  /* Paste */
+  textarea{
+    width:100%; min-height:100px; resize:vertical; background:var(--surface-2);
+    border:1px solid var(--line); border-radius:8px; color:var(--text);
+    padding:12px 14px; font-family:'JetBrains Mono', monospace; font-size:13px; line-height:1.5;
+  }
+  .sample-row{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;}
+  .chip{
+    font-size:11.5px; padding:7px 12px; border-radius:20px; border:1px solid var(--line);
+    background:var(--surface-2); color:var(--muted);
+  }
+  .chip:hover{color:var(--text); border-color:var(--brand);}
+
+  .btn{
+    border:none; border-radius:8px; padding:11px 18px; font-size:13.5px; font-weight:600;
+    background:var(--brand); color:var(--ink); transition:filter .15s ease;
+  }
+  .btn:hover{filter:brightness(1.08);}
+  .btn.secondary{background:var(--surface-2); color:var(--text); border:1px solid var(--line);}
+  .btn:disabled{opacity:.45; cursor:not-allowed;}
+  .btn-row{display:flex; gap:10px; margin-top:16px;}
+  .hint{font-size:11.5px; color:var(--muted); margin-top:10px; line-height:1.5;}
+
+  /* ---------- Results ---------- */
+  .result-empty{
+    padding:60px 22px; text-align:center; color:var(--muted); font-size:13.5px;
+  }
+  .result-empty svg{opacity:.35; margin-bottom:14px;}
+
+  .verdict{padding:22px; border-bottom:1px solid var(--line);}
+  .verdict-row{display:flex; align-items:center; gap:16px;}
+  .verdict-badge{
+    width:52px; height:52px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:22px;
+  }
+  .verdict-title{font-size:18px; font-weight:700; margin:0 0 3px;}
+  .verdict-sub{font-size:12.5px; color:var(--muted);}
+  .score-bar-track{margin-top:16px; height:8px; border-radius:5px; background:var(--surface-2); overflow:hidden;}
+  .score-bar-fill{height:100%; border-radius:5px; transition:width .5s ease;}
+  .score-label{display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:6px; font-family:'JetBrains Mono', monospace;}
+
+  .decoded-box{
+    margin:0 22px 0; padding:14px 16px; background:var(--surface-2); border:1px solid var(--line);
+    border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:12.5px; word-break:break-all;
+    color:var(--text); margin-top:18px;
+  }
+  .decoded-label{font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:6px;}
+
+  .flags{padding:6px 22px 22px;}
+  .flags-title{font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:20px 0 10px;}
+  .flag-row{
+    display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-top:1px solid var(--line); font-size:13px;
+  }
+  .flag-row:last-child{padding-bottom:0;}
+  .flag-icon{width:18px; height:18px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px; margin-top:1px;}
+  .flag-icon.hit{background:var(--danger-dim); color:var(--danger);}
+  .flag-icon.clear{background:var(--safe-dim); color:var(--safe);}
+  .flag-text b{color:var(--text);}
+  .flag-text{color:var(--muted); line-height:1.5;}
+  .flag-weight{margin-left:auto; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--muted); flex-shrink:0;}
+
+  /* History */
+  .history-panel{margin-top:28px;}
+  table{width:100%; border-collapse:collapse; font-size:12.5px;}
+  th{text-align:left; color:var(--muted); font-weight:500; font-size:11px; text-transform:uppercase; letter-spacing:.05em; padding:10px 22px; border-bottom:1px solid var(--line);}
+  td{padding:12px 22px; border-bottom:1px solid var(--line); color:var(--text);}
+  tr:last-child td{border-bottom:none;}
+  td.url-cell{font-family:'JetBrains Mono', monospace; color:var(--muted); max-width:280px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .badge{font-size:10.5px; font-weight:600; padding:3px 9px; border-radius:20px; display:inline-block;}
+  .badge.safe{background:var(--safe-dim); color:var(--safe);}
+  .badge.caution{background:var(--caution-dim); color:var(--caution);}
+  .badge.danger{background:var(--danger-dim); color:var(--danger);}
+  .empty-row td{color:var(--muted); text-align:center; padding:24px;}
+
+  footer{
+    max-width:1180px; margin:0 auto; padding:0 24px 50px; color:var(--muted); font-size:11.5px; line-height:1.7;
+  }
+  footer .rule{height:1px; background:var(--line); margin-bottom:22px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 30 30" fill="none">
+      <rect width="30" height="30" rx="7" fill="#182339"/>
+      <rect x="5" y="5" width="7" height="7" fill="#E8B33D"/>
+      <rect x="18" y="5" width="7" height="7" fill="#E8B33D"/>
+      <rect x="5" y="18" width="7" height="7" fill="#E8B33D"/>
+      <rect x="15" y="15" width="3.5" height="3.5" fill="#E2494C"/>
+      <rect x="20.5" y="20.5" width="3.5" height="3.5" fill="#E8B33D"/>
+    </svg>
+    <div>
+      <h1>Quishing Scanner</h1>
+      <span>Heuristic QR phishing risk detector</span>
+    </div>
+  </div>
+  <div class="status-pill" id="engineStatus"><span class="dot"></span> engine ready</div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+
+    <!-- INPUT PANEL -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="eyebrow">Step 1</div>
+        <h2>Provide a QR code or link</h2>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="upload">Upload image</button>
+        <button class="tab-btn" data-tab="camera">Use camera</button>
+        <button class="tab-btn" data-tab="paste">Paste URL</button>
+      </div>
+
+      <div class="tab-panels">
+        <!-- Upload tab -->
+        <div class="tab-panel active" id="tab-upload">
+          <div class="dropzone" id="dropzone">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8D96AC" stroke-width="1.6"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 9l5-5 5 5M12 4v13"/></svg>
+            <div><b>Click to upload</b> or drag a QR code image here</div>
+          </div>
+          <input type="file" id="fileInput" accept="image/*">
+          <div class="preview-wrap" id="previewWrap">
+            <img id="previewImg" alt="Uploaded QR preview">
+            <div class="scan-sweep" id="sweep" style="display:none;"></div>
+          </div>
+          <p class="hint">JPEG or PNG. The image is decoded entirely in your browser — nothing is uploaded anywhere.</p>
+        </div>
+
+        <!-- Camera tab -->
+        <div class="tab-panel" id="tab-camera">
+          <div class="cam-wrap">
+            <video id="video" playsinline muted></video>
+            <div class="reticle"></div>
+          </div>
+          <div class="cam-btn-row">
+            <button class="btn" id="camStartBtn">Start camera</button>
+            <button class="btn secondary" id="camStopBtn" disabled>Stop</button>
+          </div>
+          <p class="hint" id="camHint">Point your camera at a QR code. Scanning happens locally on your device.</p>
+        </div>
+
+        <!-- Paste tab -->
+        <div class="tab-panel" id="tab-paste">
+          <textarea id="pasteInput" placeholder="Paste a decoded QR link or any URL here, e.g. https://gcash-verify-account.tk/login"></textarea>
+          <div class="sample-row">
+            <button class="chip" data-sample="suspicious">Try a suspicious sample</button>
+            <button class="chip" data-sample="legit">Try a legitimate sample</button>
+          </div>
+          <div class="btn-row">
+            <button class="btn" id="analyzePasteBtn">Analyze</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS PANEL -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="eyebrow">Step 2</div>
+        <h2>Detection result</h2>
+      </div>
+      <div id="resultEmpty" class="result-empty">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8D96AC" stroke-width="1.3"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <div>No scan yet — upload an image, use your camera, or paste a link to see a risk assessment.</div>
+      </div>
+      <div id="resultContent" style="display:none;">
+        <div class="verdict">
+          <div class="verdict-row">
+            <div class="verdict-badge" id="verdictBadge">—</div>
+            <div>
+              <p class="verdict-title" id="verdictTitle">—</p>
+              <p class="verdict-sub" id="verdictSub">—</p>
+            </div>
+          </div>
+          <div class="score-bar-track"><div class="score-bar-fill" id="scoreBarFill"></div></div>
+          <div class="score-label"><span>risk score</span><span id="scoreValue">0 / 100</span></div>
+        </div>
+        <div class="decoded-box">
+          <div class="decoded-label">Decoded content</div>
+          <div id="decodedText">—</div>
+        </div>
+        <div class="flags">
+          <div class="flags-title">Signals evaluated</div>
+          <div id="flagList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="panel history-panel">
+    <div class="panel-head">
+      <div class="eyebrow">Session log</div>
+      <h2>Recent scans</h2>
+    </div>
+    <table>
+      <thead><tr><th>Time</th><th>Content</th><th>Verdict</th><th>Score</th></tr></thead>
+      <tbody id="historyBody">
+        <tr class="empty-row"><td colspan="4">Scans from this session will appear here.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  <div class="rule"></div>
+  This scanner runs a transparent, rule-based heuristic engine in your browser — the same categories of signal (destination type, TLD reputation, brand-domain mismatch, URL obfuscation, etc.) that a trained ML classifier would learn to weigh. It is a demonstration prototype for research/portfolio use, not a certified security product, and results should not be the sole basis for a real security decision.
+</footer>
+
+<canvas id="hiddenCanvas" style="display:none;"></canvas>
+
+<script>
+/* ============ Heuristic quishing detection engine ============ */
+
+const SHORTENERS = ["bit.ly","tinyurl.com","t.co","cutt.ly","is.gd","goo.gl","rebrand.ly","shorte.st","tiny.cc","rb.gy","s.id","qr.net","v.gd"];
+const SUSPICIOUS_TLDS = [".tk",".ml",".ga",".cf",".gq",".xyz",".top",".work",".click",".zip",".mov",".rest",".loan"];
+const SUSPICIOUS_KEYWORDS = ["verify","login","secure","update","confirm","suspend","unlock","otp","claim","reward","reactivate","validate"];
+const PH_BRANDS = {
+  "gcash": ["gcash.com"],
+  "paymaya": ["maya.ph","paymaya.com"],
+  "maya": ["maya.ph"],
+  "bpi": ["bpi.com.ph"],
+  "bdo": ["bdo.com.ph"],
+  "metrobank": ["metrobank.com.ph"],
+  "unionbank": ["unionbankph.com"],
+  "landbank": ["landbank.com"],
+  "shopeepay": ["shopee.ph"],
+  "shopee": ["shopee.ph"],
+  "lazada": ["lazada.com.ph"],
+  "grab": ["grab.com"]
+};
+
+function safeParseUrl(raw){
+  try{
+    let candidate = raw.trim();
+    if(!/^https?:\/\//i.test(candidate)) candidate = "http://" + candidate;
+    return new URL(candidate);
+  }catch(e){ return null; }
+}
+
+function analyze(rawText){
+  const flags = [];
+  const url = safeParseUrl(rawText);
+  let score = 0;
+
+  if(!url){
+    flags.push({label:"Not a well-formed URL", detail:"Decoded content doesn't parse as a link — could be plain text, a contact card, or a malformed payload.", hit:true, weight:15});
+    score += 15;
+    return finalize(rawText, score, flags);
+  }
+
+  const host = url.hostname.toLowerCase();
+  const full = url.href.toLowerCase();
+  const isIp = /^(\d{1,3}\.){3}\d{1,3}$/.test(host);
+
+  addFlag(flags, isIp, 25,
+    "Uses a raw IP address instead of a domain name",
+    isIp ? `Destination is a bare IP (${host}) — legitimate services almost never send users to a numeric address.` : "Destination uses a normal domain name.");
+  if(isIp) score += 25;
+
+  const noHttps = url.protocol !== "https:";
+  addFlag(flags, noHttps, 10, "Connection is not HTTPS",
+    noHttps ? "The link does not use HTTPS, so any submitted data would travel unencrypted." : "Link uses HTTPS.");
+  if(noHttps) score += 10;
+
+  const hasAt = full.includes("@");
+  addFlag(flags, hasAt, 20, "Contains an '@' symbol in the URL",
+    hasAt ? "An '@' before the real host is a classic trick to disguise the true destination." : "No '@' obfuscation trick found.");
+  if(hasAt) score += 20;
+
+  const shortener = SHORTENERS.some(s => host === s || host.endsWith("." + s));
+  addFlag(flags, shortener, 15, "Uses a URL shortener",
+    shortener ? `"${host}" is a link-shortening service, which hides the real destination until after the click.` : "Not a known shortener domain.");
+  if(shortener) score += 15;
+
+  const badTld = SUSPICIOUS_TLDS.some(t => host.endsWith(t));
+  addFlag(flags, badTld, 15, "Domain uses a low-cost / high-abuse TLD",
+    badTld ? `The "${host.split(".").pop()}" TLD is frequently used in low-cost throwaway phishing domains.` : "TLD is not on the commonly-abused list.");
+  if(badTld) score += 15;
+
+  const subdomainCount = host.split(".").length - 2;
+  const tooManySubs = subdomainCount > 3;
+  addFlag(flags, tooManySubs, 10, "Excessive subdomains",
+    tooManySubs ? `"${host}" has ${subdomainCount} subdomain levels, often used to bury a fake brand name in front of the real domain.` : "Subdomain depth looks normal.");
+  if(tooManySubs) score += 10;
+
+  const hyphenCount = (host.match(/-/g) || []).length;
+  const hyphenHeavy = hyphenCount >= 2;
+  addFlag(flags, hyphenHeavy, 8, "Hyphen-heavy domain name",
+    hyphenHeavy ? `${hyphenCount} hyphens in "${host}" — a common pattern in typosquatted brand names.` : "Domain doesn't rely on unusual hyphenation.");
+  if(hyphenHeavy) score += 8;
+
+  let brandHit = null;
+  for(const brand in PH_BRANDS){
+    if(full.includes(brand)){
+      const official = PH_BRANDS[brand];
+      const matchesOfficial = official.some(d => host === d || host.endsWith("." + d));
+      if(!matchesOfficial){ brandHit = {brand, host}; break; }
+    }
+  }
+  addFlag(flags, !!brandHit, 30, "Brand name doesn't match its official domain",
+    brandHit ? `Mentions "${brandHit.brand}" but resolves to "${brandHit.host}" — not that brand's official domain. This is the signature pattern of a spoofed e-wallet or bank page.` : "No local e-wallet/bank brand name found paired with a mismatched domain.");
+  if(brandHit) score += 30;
+
+  const kwHit = SUSPICIOUS_KEYWORDS.find(k => full.includes(k));
+  addFlag(flags, !!kwHit, 12, "Urgency / credential-harvesting keywords",
+    kwHit ? `Contains "${kwHit}" — common wording used to pressure a quick, unthinking response.` : "No urgency-driven keywords detected.");
+  if(kwHit) score += 12;
+
+  const tooLong = url.href.length > 75;
+  addFlag(flags, tooLong, 6, "Unusually long URL",
+    tooLong ? `${url.href.length} characters — long URLs are often padded to bury the true domain further from view.` : "URL length is unremarkable.");
+  if(tooLong) score += 6;
+
+  const punycode = host.includes("xn--");
+  addFlag(flags, punycode, 20, "Punycode / possible homograph domain",
+    punycode ? "Domain is encoded in punycode, which can be used to visually mimic a trusted brand with look-alike characters." : "No punycode encoding detected.");
+  if(punycode) score += 20;
+
+  const numericHeavy = (host.match(/\d/g) || []).length >= 4;
+  addFlag(flags, numericHeavy, 8, "Numeric-heavy domain",
+    numericHeavy ? "Domain contains an unusually high number of digits, common in auto-generated throwaway domains." : "Domain isn't unusually numeric.");
+  if(numericHeavy) score += 8;
+
+  return finalize(url.href, Math.min(score, 100), flags);
+}
+
+function addFlag(flags, hit, weight, label, detail){
+  flags.push({label, detail, hit, weight});
+}
+
+function finalize(decoded, score, flags){
+  flags.sort((a,b) => (b.hit - a.hit) || (b.weight - a.weight));
+  let tier;
+  if(score >= 55) tier = "danger";
+  else if(score >= 25) tier = "caution";
+  else tier = "safe";
+  return {decoded, score, flags, tier};
+}
+
+/* ============ Rendering ============ */
+
+const tierMeta = {
+  safe:    {title:"Looks safe", sub:"No strong quishing signals detected in this link.", icon:"✓", color:"var(--safe)"},
+  caution: {title:"Proceed with caution", sub:"Some signals associated with quishing were found — verify the source before entering any details.", icon:"!", color:"var(--caution)"},
+  danger:  {title:"Likely quishing attempt", sub:"Multiple high-risk signals detected. Do not enter credentials or payment info.", icon:"✕", color:"var(--danger)"}
+};
+
+function renderResult(result){
+  document.getElementById('resultEmpty').style.display = 'none';
+  const content = document.getElementById('resultContent');
+  content.style.display = 'block';
+
+  const meta = tierMeta[result.tier];
+  const badge = document.getElementById('verdictBadge');
+  badge.style.background = meta.color.replace('var(', 'var(').replace(')', '').startsWith('--') ? '' : '';
+  badge.style.background = `color-mix(in srgb, ${meta.color} 18%, transparent)`;
+  badge.style.color = meta.color;
+  badge.textContent = meta.icon;
+
+  document.getElementById('verdictTitle').textContent = meta.title;
+  document.getElementById('verdictTitle').style.color = meta.color;
+  document.getElementById('verdictSub').textContent = meta.sub;
+
+  const fill = document.getElementById('scoreBarFill');
+  fill.style.width = result.score + '%';
+  fill.style.background = meta.color;
+  document.getElementById('scoreValue').textContent = result.score + ' / 100';
+
+  document.getElementById('decodedText').textContent = result.decoded;
+
+  const flagList = document.getElementById('flagList');
+  flagList.innerHTML = '';
+  result.flags.forEach(f => {
+    const row = document.createElement('div');
+    row.className = 'flag-row';
+    row.innerHTML = `
+      <div class="flag-icon ${f.hit ? 'hit':'clear'}">${f.hit ? '✕' : '✓'}</div>
+      <div class="flag-text"><b>${f.label}</b><br>${f.detail}</div>
+      <div class="flag-weight">${f.hit ? '+' + f.weight : '0'}</div>
+    `;
+    flagList.appendChild(row);
+  });
+
+  addHistoryRow(result);
+}
+
+function addHistoryRow(result){
+  const body = document.getElementById('historyBody');
+  const emptyRow = body.querySelector('.empty-row');
+  if(emptyRow) emptyRow.remove();
+
+  const tr = document.createElement('tr');
+  const time = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  tr.innerHTML = `
+    <td>${time}</td>
+    <td class="url-cell" title="${escapeHtml(result.decoded)}">${escapeHtml(result.decoded)}</td>
+    <td><span class="badge ${result.tier}">${result.tier}</span></td>
+    <td>${result.score}</td>
+  `;
+  body.prepend(tr);
+}
+
+function escapeHtml(s){
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+/* ============ Tabs ============ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab !== 'camera') stopCamera();
+  });
+});
+
+/* ============ Upload flow ============ */
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const previewWrap = document.getElementById('previewWrap');
+const previewImg = document.getElementById('previewImg');
+const sweep = document.getElementById('sweep');
+const hiddenCanvas = document.getElementById('hiddenCanvas');
+
+dropzone.addEventListener('click', () => fileInput.click());
+['dragover','dragenter'].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.add('drag'); }));
+['dragleave','drop'].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.remove('drag'); }));
+dropzone.addEventListener('drop', e => { if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); });
+
+function handleFile(file){
+  if(!file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    previewImg.src = e.target.result;
+    previewWrap.style.display = 'block';
+    sweep.style.display = 'block';
+    const img = new Image();
+    img.onload = () => {
+      const canvas = hiddenCanvas;
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      setTimeout(() => {
+        sweep.style.display = 'none';
+        if(typeof jsQR === 'undefined'){
+          renderResult(analyze("[QR decoder library unavailable — try the Paste URL tab instead]"));
+          return;
+        }
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
+        if(code && code.data){
+          renderResult(analyze(code.data));
+        }else{
+          document.getElementById('resultEmpty').style.display = 'block';
+          document.getElementById('resultContent').style.display = 'none';
+          document.getElementById('resultEmpty').textContent = 'No QR code found in that image — try another photo or use the Paste URL tab.';
+        }
+      }, 650);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ============ Camera flow ============ */
+let stream = null;
+let scanning = false;
+const video = document.getElementById('video');
+const camStartBtn = document.getElementById('camStartBtn');
+const camStopBtn = document.getElementById('camStopBtn');
+const camHint = document.getElementById('camHint');
+
+camStartBtn.addEventListener('click', startCamera);
+camStopBtn.addEventListener('click', stopCamera);
+
+async function startCamera(){
+  try{
+    stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
+    video.srcObject = stream;
+    await video.play();
+    scanning = true;
+    camStartBtn.disabled = true;
+    camStopBtn.disabled = false;
+    camHint.textContent = 'Scanning… point the camera steadily at a QR code.';
+    requestAnimationFrame(scanFrame);
+  }catch(err){
+    camHint.textContent = 'Camera access was denied or unavailable. You can still use Upload or Paste URL.';
+  }
+}
+
+function stopCamera(){
+  scanning = false;
+  if(stream){ stream.getTracks().forEach(t => t.stop()); stream = null; }
+  camStartBtn.disabled = false;
+  camStopBtn.disabled = true;
+}
+
+function scanFrame(){
+  if(!scanning) return;
+  if(video.readyState === video.HAVE_ENOUGH_DATA && typeof jsQR !== 'undefined'){
+    const canvas = hiddenCanvas;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const code = jsQR(imageData.data, imageData.width, imageData.height);
+    if(code && code.data){
+      renderResult(analyze(code.data));
+      camHint.textContent = 'QR code captured. Start again to scan another.';
+      stopCamera();
+      return;
+    }
+  }
+  requestAnimationFrame(scanFrame);
+}
+
+/* ============ Paste flow ============ */
+const pasteInput = document.getElementById('pasteInput');
+document.getElementById('analyzePasteBtn').addEventListener('click', () => {
+  const val = pasteInput.value.trim();
+  if(!val) return;
+  renderResult(analyze(val));
+});
+
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const samples = {
+      suspicious: "http://gcash-account-verify.tk/secure/login.php?id=48291",
+      legit: "https://www.gcash.com/promos/august-cashback"
+    };
+    pasteInput.value = samples[chip.dataset.sample];
+    renderResult(analyze(pasteInput.value));
+  });
+});
+
+/* ============ Engine status check ============ */
+window.addEventListener('load', () => {
+  if(typeof jsQR === 'undefined'){
+    const pill = document.getElementById('engineStatus');
+    pill.innerHTML = '<span class="dot" style="background:var(--danger); box-shadow:0 0 6px var(--danger);"></span> decoder unavailable — use Paste URL';
+  }
+});
+</script>
+
+</body>
+</html>
