@@ -1,0 +1,30 @@
+# Live, verified phishing URLs pulled from PhishTank (valid + online)
+# Source page used: https://phishtank.org/phish_search.php?valid=y&active=All&Search=Search
+# Pulled on: 2026-08-23
+# SAFETY: text data only -- never open these directly in a browser.
+
+http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd
+http://www.w3.org/1999/xhtml
+https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#
+https://js-agent.newrelic.com/
+http://custom.transaction
+https://ca-coinsquare-auth.webflow.io/
+https://accounts-earthlink-net-webmail.framer.website/...
+https://secure-site-manager--natalypaint75.replit.app/...
+https://security-server-landing-page--tketterhh.replit.app/...
+https://secure-index-page--pugetsoundsurll.replit.app/...
+https://secure-page-builder--g-swalley.replit.app/...
+https://security-page-builder--omnia6.replit.app/...
+https://pay-pal-omega.vercel.app/
+https://zimupdate-portal.vercel.app/
+https://govtment.sbs/
+https://meta-verified.bolt.host/
+https://xfinity101.duckdns.org/verify/
+https://paycity.za-oygi.cfd/
+https://paycity.za-oygi.cfd/payment
+https://xfinity101.duckdns.org/verify/payment
+http://loja2026.webcindario.com/index.html
+https://crear-solicitud-49012.vercel.app
+https://wexinc.passkeyconnect.com/sign-in/
+https://allegrolokalnie.pl39343.top
+http://www.allegrolokalnie.pl-746373638.click
