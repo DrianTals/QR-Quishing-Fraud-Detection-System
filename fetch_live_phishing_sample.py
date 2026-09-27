@@ -20,7 +20,7 @@ from datetime import date
 FEED_URL = "https://openphish.com/feed.txt"
 SAMPLE_SIZE = 15  # how many URLs to save
 
-OUTPUT_DIR = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw"
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "raw")
 
 
 def main():

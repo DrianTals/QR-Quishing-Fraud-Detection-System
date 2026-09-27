@@ -1,0 +1,30 @@
+# Live, verified phishing URLs pulled from PhishTank (valid + online)
+# Source page used: https://phishtank.org/phish_search.php?valid=y&active=All&Search=Search
+# Pulled on: 2026-09-27
+# SAFETY: text data only -- never open these directly in a browser.
+
+http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd
+http://www.w3.org/1999/xhtml
+https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#
+https://js-agent.newrelic.com/
+http://custom.transaction
+https://recdit.nomservyukzooetionscserviczioliiqlo.cyou/index.html...
+https://maj-necessaire.bolt.host/
+https://maj-necessaire.bolt.host/index.html
+https://gorif-digofs.com/hcaptcha
+https://gardenstokyjp.com/874968/
+https://airstayroom.com/catalog/jeeff.html
+https://auspost.addqws.com/
+https://www.theodore3.com/the-cover-up/wp-content/upgrade/Microsoft.ht...
+https://tokenim-hk-cdn.beauty/
+https://servicecenterfurlogistik5a.ink/M7uR2wX...
+https://servicecenterfurlogistik3a.ink/s8W6nBM...
+https://scottjdecker.com/management/OG/
+https://gemini-balance.yahou2011.com/
+http://www.bankofamerica.xin/
+https://verifiedbadge-celestine.vercel.app/
+https://cryptotrezorvault.gitbook.io/us
+https://cryptotrezorvault.gitbook.io/
+https://www.roblox.com.am/users/186279419962/profile...
+http://net-mymaxis.biz.id/vip
+http://allegro.123012098543.lat

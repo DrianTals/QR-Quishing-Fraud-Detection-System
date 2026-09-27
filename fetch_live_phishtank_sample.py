@@ -28,7 +28,7 @@ CANDIDATE_URLS = [
     "https://phishtank.org/phish_search.php?valid=y&active=All&Search=Search",
 ]
 
-OUTPUT_DIR = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw"
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "raw")
 
 # Matches http(s):// URLs as they appear in PhishTank's results tables
 URL_PATTERN = re.compile(r'https?://[^\s<>"\'\)]+')
