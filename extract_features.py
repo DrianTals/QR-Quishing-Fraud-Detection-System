@@ -1,7 +1,7 @@
 """
 Step: Feature Extraction
 -------------------------
-Reads data/processed/qr_manifest_clean.csv and converts every URL
+Reads data/processed/qr_manifest_with_synthetic.csv and converts every URL
 into a row of numeric/binary features — the same signal categories
 used in the rule-based scanner engine (IP address, shortener,
 suspicious TLD, brand mismatch, punycode, etc.).
@@ -9,7 +9,7 @@ suspicious TLD, brand mismatch, punycode, etc.).
 This feature table is what either the rule-based scorer or an ML
 model (e.g. RandomForestClassifier) will actually be trained/tested on.
 
-Input:  data/processed/qr_manifest_clean.csv
+Input:  data/processed/qr_manifest_with_synthetic.csv
 Output: data/processed/features.csv
 """
 
@@ -17,10 +17,11 @@ import csv
 import os
 import re
 import math
-from urllib.parse import urlparse
 
-INPUT_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_with_synthetic.csv"
-OUTPUT_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\features.csv"
+from url_utils import extract_url_candidate, safe_parse
+
+INPUT_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_with_synthetic.csv"
+OUTPUT_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\features.csv"
 
 SHORTENERS = ["bit.ly", "tinyurl.com", "t.co", "cutt.ly", "is.gd", "goo.gl",
               "rebrand.ly", "shorte.st", "tiny.cc", "rb.gy", "s.id", "qr.net", "v.gd"]
@@ -68,18 +69,9 @@ def shannon_entropy(s):
     return round(entropy, 4)
 
 
-def safe_parse(raw_url):
-    try:
-        candidate = raw_url.strip()
-        if not re.match(r"^https?://", candidate, re.IGNORECASE):
-            candidate = "http://" + candidate
-        return urlparse(candidate)
-    except Exception:
-        return None
-
-
 def extract_features(raw_url):
-    parsed = safe_parse(raw_url)
+    normalized_url = extract_url_candidate(raw_url)
+    parsed = safe_parse(normalized_url)
     if parsed is None or not parsed.hostname:
         # Unparseable URL — return a row flagged accordingly, rest zeroed
         return {
@@ -87,14 +79,14 @@ def extract_features(raw_url):
             "is_shortener": 0, "bad_tld": 0, "subdomain_count": 0,
             "too_many_subdomains": 0, "hyphen_count": 0, "hyphen_heavy": 0,
             "brand_mismatch": 0, "brand_mentioned": "", "suspicious_keyword": 0,
-            "url_length": len(raw_url), "is_long": 1 if len(raw_url) > 75 else 0,
+            "url_length": len(normalized_url), "is_long": 1 if len(normalized_url) > 75 else 0,
             "punycode": 0, "numeric_heavy": 0, "is_free_hosting": 0, "has_double_hyphen": 0,
             "domain_length": 0, "digit_ratio_domain": 0,
             "domain_entropy": 0, "path_depth": 0, "query_param_count": 0,
         }
 
     host = parsed.hostname.lower()
-    full = raw_url.lower()
+    full = normalized_url.lower()
 
     is_ip = 1 if re.match(r"^(\d{1,3}\.){3}\d{1,3}$", host) else 0
     no_https = 0 if parsed.scheme == "https" else 1
@@ -119,7 +111,7 @@ def extract_features(raw_url):
             break
 
     suspicious_keyword = 1 if any(k in full for k in SUSPICIOUS_KEYWORDS) else 0
-    url_length = len(raw_url)
+    url_length = len(normalized_url)
     is_long = 1 if url_length > 75 else 0
     punycode = 1 if "xn--" in host else 0
     numeric_heavy = 1 if sum(c.isdigit() for c in host) >= 4 else 0
@@ -160,12 +152,13 @@ def main():
     with open(INPUT_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            features = extract_features(row["url"])
+            normalized_url = extract_url_candidate(row["url"])
+            features = extract_features(normalized_url)
             out_row = {
                 "filename": row["filename"],
                 "label": row["label"],
                 "label_name": row["label_name"],
-                "url": row["url"],
+                "url": normalized_url,
                 **features,
             }
             rows_out.append(out_row)

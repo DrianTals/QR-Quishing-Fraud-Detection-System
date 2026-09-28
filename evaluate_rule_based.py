@@ -16,8 +16,8 @@ Output: prints metrics to the terminal + saves a results CSV with
 
 import csv
 
-FEATURES_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\features.csv"
-RESULTS_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\evaluation_results.csv"
+FEATURES_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\features.csv"
+RESULTS_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\evaluation_results.csv"
 
 # Same weights as the scanner app (index.html) — keep these two in sync manually
 #

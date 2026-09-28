@@ -21,16 +21,16 @@ import os
 import pickle
 import glob
 import re
-from urllib.parse import urlparse
 import math
 import warnings
 
 import pandas as pd
+from url_utils import extract_url_candidate, safe_parse
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
-MODEL_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\model\random_forest.pkl"
-RAW_DIR = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw"
+MODEL_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\model\random_forest.pkl"
+RAW_DIR = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\raw"
 
 FEATURE_COLUMNS = [
     "has_ip", "no_https", "has_at", "is_shortener", "bad_tld",
@@ -79,23 +79,14 @@ def shannon_entropy(s):
     return round(-sum((count / length) * math.log2(count / length) for count in freq.values()), 4)
 
 
-def safe_parse(raw_url):
-    try:
-        candidate = raw_url.strip()
-        if not re.match(r"^https?://", candidate, re.IGNORECASE):
-            candidate = "http://" + candidate
-        return urlparse(candidate)
-    except Exception:
-        return None
-
-
 def extract_features(raw_url):
-    parsed = safe_parse(raw_url)
+    normalized_url = extract_url_candidate(raw_url)
+    parsed = safe_parse(normalized_url)
     if parsed is None or not parsed.hostname:
         return None
 
     host = parsed.hostname.lower()
-    full = raw_url.lower()
+    full = normalized_url.lower()
 
     is_ip = 1 if re.match(r"^(\d{1,3}\.){3}\d{1,3}$", host) else 0
     no_https = 0 if parsed.scheme == "https" else 1

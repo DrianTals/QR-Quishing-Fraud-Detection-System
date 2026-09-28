@@ -10300,10 +10300,10 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
     </svg>
     <div>
       <h1>Quishing Scanner</h1>
-      <span>Heuristic QR phishing risk detector</span>
+    <span>Random Forest QR phishing scanner</span>
     </div>
   </div>
-  <div class="status-pill" id="engineStatus"><span class="dot"></span> engine ready</div>
+    <div class="status-pill" id="engineStatus"><span class="dot"></span> checking scanner…</div>
 </header>
 
 <div class="wrap">
@@ -10334,7 +10334,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
             <img id="previewImg" alt="Uploaded QR preview">
             <div class="scan-sweep" id="sweep" style="display:none;"></div>
           </div>
-          <p class="hint">JPEG or PNG. The image is decoded entirely in your browser — nothing is uploaded anywhere.</p>
+          <p class="hint">JPEG or PNG. The image is decoded in your browser; the extracted link is analyzed by the local model service.</p>
         </div>
 
         <!-- Camera tab -->
@@ -10347,7 +10347,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
             <button class="btn" id="camStartBtn">Start camera</button>
             <button class="btn secondary" id="camStopBtn" disabled>Stop</button>
           </div>
-          <p class="hint" id="camHint">Point your camera at a QR code. Scanning happens locally on your device.</p>
+          <p class="hint" id="camHint">Point your camera at a QR code. The decoded link is analyzed by the local model service.</p>
         </div>
 
         <!-- Paste tab -->
@@ -10385,7 +10385,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
             </div>
           </div>
           <div class="score-bar-track"><div class="score-bar-fill" id="scoreBarFill"></div></div>
-          <div class="score-label"><span>risk score</span><span id="scoreValue">0 / 100</span></div>
+          <div class="score-label"><span>model risk probability</span><span id="scoreValue">0 / 100</span></div>
         </div>
         <div class="decoded-box">
           <div class="decoded-label">Decoded content</div>
@@ -10416,138 +10416,34 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
 <footer>
   <div class="rule"></div>
-  This scanner runs a transparent, rule-based heuristic engine in your browser — the same categories of signal (destination type, TLD reputation, brand-domain mismatch, URL obfuscation, etc.) that a trained ML classifier would learn to weigh. It is a demonstration prototype for research/portfolio use, not a certified security product, and results should not be the sole basis for a real security decision.
+    QR decoding runs in your browser. URL features are evaluated by the locally hosted Random Forest model; submitted links are analyzed as text and are never opened. This is a research prototype, not a certified security product, and results should not be the sole basis for a real security decision.
 </footer>
 
 <canvas id="hiddenCanvas" style="display:none;"></canvas>
 
 <script>
-/* ============ Heuristic quishing detection engine ============ */
-
-const SHORTENERS = ["bit.ly","tinyurl.com","t.co","cutt.ly","is.gd","goo.gl","rebrand.ly","shorte.st","tiny.cc","rb.gy","s.id","qr.net","v.gd"];
-const SUSPICIOUS_TLDS = [".tk",".ml",".ga",".cf",".gq",".xyz",".top",".work",".click",".zip",".mov",".rest",".loan"];
-const SUSPICIOUS_KEYWORDS = ["verify","login","secure","update","confirm","suspend","unlock","otp","claim","reward","reactivate","validate"];
-const PH_BRANDS = {
-  "gcash": ["gcash.com"],
-  "paymaya": ["maya.ph","paymaya.com"],
-  "maya": ["maya.ph"],
-  "bpi": ["bpi.com.ph"],
-  "bdo": ["bdo.com.ph"],
-  "metrobank": ["metrobank.com.ph"],
-  "unionbank": ["unionbankph.com"],
-  "landbank": ["landbank.com"],
-  "shopeepay": ["shopee.ph"],
-  "shopee": ["shopee.ph"],
-  "lazada": ["lazada.com.ph"],
-  "grab": ["grab.com"]
-};
-
-function safeParseUrl(raw){
-  try{
-    let candidate = raw.trim();
-    if(!/^https?:\/\//i.test(candidate)) candidate = "http://" + candidate;
-    return new URL(candidate);
-  }catch(e){ return null; }
+/* ============ Local Random Forest API ============ */
+async function analyze(rawText){
+    const response = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({url: rawText})
+    });
+    const result = await response.json().catch(() => ({}));
+    if(!response.ok) throw new Error(result.error || 'The local model service returned an error.');
+    return result;
 }
 
-function analyze(rawText){
-  const flags = [];
-  const url = safeParseUrl(rawText);
-  let score = 0;
-
-  if(!url){
-    flags.push({label:"Not a well-formed URL", detail:"Decoded content doesn't parse as a link — could be plain text, a contact card, or a malformed payload.", hit:true, weight:30});
-    score += 30;
-    return finalize(rawText, score, flags);
-  }
-
-  const host = url.hostname.toLowerCase();
-  const full = url.href.toLowerCase();
-  const isIp = /^(\d{1,3}\.){3}\d{1,3}$/.test(host);
-
-  addFlag(flags, isIp, 25,
-    "Uses a raw IP address instead of a domain name",
-    isIp ? `Destination is a bare IP (${host}) — legitimate services almost never send users to a numeric address.` : "Destination uses a normal domain name.");
-  if(isIp) score += 25;
-
-  const noHttps = url.protocol !== "https:";
-  addFlag(flags, noHttps, 10, "Connection is not HTTPS",
-    noHttps ? "The link does not use HTTPS, so any submitted data would travel unencrypted." : "Link uses HTTPS.");
-  if(noHttps) score += 10;
-
-  const hasAt = full.includes("@");
-  addFlag(flags, hasAt, 20, "Contains an '@' symbol in the URL",
-    hasAt ? "An '@' before the real host is a classic trick to disguise the true destination." : "No '@' obfuscation trick found.");
-  if(hasAt) score += 20;
-
-  const shortener = SHORTENERS.some(s => host === s || host.endsWith("." + s));
-  addFlag(flags, shortener, 15, "Uses a URL shortener",
-    shortener ? `"${host}" is a link-shortening service, which hides the real destination until after the click.` : "Not a known shortener domain.");
-  if(shortener) score += 15;
-
-  const badTld = SUSPICIOUS_TLDS.some(t => host.endsWith(t));
-  addFlag(flags, badTld, 15, "Domain uses a low-cost / high-abuse TLD",
-    badTld ? `The "${host.split(".").pop()}" TLD is frequently used in low-cost throwaway phishing domains.` : "TLD is not on the commonly-abused list.");
-  if(badTld) score += 15;
-
-  const subdomainCount = host.split(".").length - 2;
-  const tooManySubs = subdomainCount > 3;
-  addFlag(flags, tooManySubs, 10, "Excessive subdomains",
-    tooManySubs ? `"${host}" has ${subdomainCount} subdomain levels, often used to bury a fake brand name in front of the real domain.` : "Subdomain depth looks normal.");
-  if(tooManySubs) score += 10;
-
-  const hyphenCount = (host.match(/-/g) || []).length;
-  const hyphenHeavy = hyphenCount >= 2;
-  addFlag(flags, hyphenHeavy, 8, "Hyphen-heavy domain name",
-    hyphenHeavy ? `${hyphenCount} hyphens in "${host}" — a common pattern in typosquatted brand names.` : "Domain doesn't rely on unusual hyphenation.");
-  if(hyphenHeavy) score += 8;
-
-  let brandHit = null;
-  for(const brand in PH_BRANDS){
-    if(full.includes(brand)){
-      const official = PH_BRANDS[brand];
-      const matchesOfficial = official.some(d => host === d || host.endsWith("." + d));
-      if(!matchesOfficial){ brandHit = {brand, host}; break; }
+async function analyzeAndRender(rawText){
+    const empty = document.getElementById('resultEmpty');
+    empty.style.display = 'block';
+    empty.textContent = 'Analyzing locally with the Random Forest model…';
+    document.getElementById('resultContent').style.display = 'none';
+    try{
+        renderResult(await analyze(rawText));
+    }catch(error){
+        empty.textContent = `${error.message} Start the scanner with: python server.py`;
     }
-  }
-  addFlag(flags, !!brandHit, 30, "Brand name doesn't match its official domain",
-    brandHit ? `Mentions "${brandHit.brand}" but resolves to "${brandHit.host}" — not that brand's official domain. This is the signature pattern of a spoofed e-wallet or bank page.` : "No local e-wallet/bank brand name found paired with a mismatched domain.");
-  if(brandHit) score += 30;
-
-  const kwHit = SUSPICIOUS_KEYWORDS.find(k => full.includes(k));
-  addFlag(flags, !!kwHit, 12, "Urgency / credential-harvesting keywords",
-    kwHit ? `Contains "${kwHit}" — common wording used to pressure a quick, unthinking response.` : "No urgency-driven keywords detected.");
-  if(kwHit) score += 12;
-
-  const tooLong = url.href.length > 75;
-  addFlag(flags, tooLong, 6, "Unusually long URL",
-    tooLong ? `${url.href.length} characters — long URLs are often padded to bury the true domain further from view.` : "URL length is unremarkable.");
-  if(tooLong) score += 6;
-
-  const punycode = host.includes("xn--");
-  addFlag(flags, punycode, 20, "Punycode / possible homograph domain",
-    punycode ? "Domain is encoded in punycode, which can be used to visually mimic a trusted brand with look-alike characters." : "No punycode encoding detected.");
-  if(punycode) score += 20;
-
-  const numericHeavy = (host.match(/\d/g) || []).length >= 4;
-  addFlag(flags, numericHeavy, 8, "Numeric-heavy domain",
-    numericHeavy ? "Domain contains an unusually high number of digits, common in auto-generated throwaway domains." : "Domain isn't unusually numeric.");
-  if(numericHeavy) score += 8;
-
-  return finalize(url.href, Math.min(score, 100), flags);
-}
-
-function addFlag(flags, hit, weight, label, detail){
-  flags.push({label, detail, hit, weight});
-}
-
-function finalize(decoded, score, flags){
-  flags.sort((a,b) => (b.hit - a.hit) || (b.weight - a.weight));
-  let tier;
-  if(score >= 55) tier = "danger";
-  else if(score >= 20) tier = "caution";
-  else tier = "safe";
-  return {decoded, score, flags, tier};
 }
 
 /* ============ Rendering ============ */
@@ -10589,7 +10485,7 @@ function renderResult(result){
     row.innerHTML = `
       <div class="flag-icon ${f.hit ? 'hit':'clear'}">${f.hit ? '✕' : '✓'}</div>
       <div class="flag-text"><b>${f.label}</b><br>${f.detail}</div>
-      <div class="flag-weight">${f.hit ? '+' + f.weight : '0'}</div>
+    <div class="flag-weight">${f.weight == null ? (f.hit ? 'hit' : 'clear') : (f.hit ? '+' + f.weight : '0')}</div>
     `;
     flagList.appendChild(row);
   });
@@ -10669,7 +10565,7 @@ function handleFile(file){
         }
         const code = jsQR(imageData.data, imageData.width, imageData.height);
         if(code && code.data){
-          renderResult(analyze(code.data));
+          analyzeAndRender(code.data);
         }else{
           document.getElementById('resultEmpty').style.display = 'block';
           document.getElementById('resultContent').style.display = 'none';
@@ -10731,7 +10627,7 @@ function scanFrame(){
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const code = jsQR(imageData.data, imageData.width, imageData.height);
     if(code && code.data){
-      renderResult(analyze(code.data));
+    analyzeAndRender(code.data);
       camHint.textContent = 'QR code captured. Start again to scan another.';
       stopCamera();
       return;
@@ -10745,7 +10641,7 @@ const pasteInput = document.getElementById('pasteInput');
 document.getElementById('analyzePasteBtn').addEventListener('click', () => {
   const val = pasteInput.value.trim();
   if(!val) return;
-  renderResult(analyze(val));
+    analyzeAndRender(val);
 });
 
 document.querySelectorAll('.chip').forEach(chip => {
@@ -10760,16 +10656,31 @@ document.querySelectorAll('.chip').forEach(chip => {
       legit: "https://www.gcash.com/promos/august-cashback"
     };
     pasteInput.value = samples[chip.dataset.sample];
-    renderResult(analyze(pasteInput.value));
+    analyzeAndRender(pasteInput.value);
   });
 });
 
 /* ============ Engine status check ============ */
-window.addEventListener('load', () => {
-  if(typeof jsQR === 'undefined'){
+window.addEventListener('load', async () => {
     const pill = document.getElementById('engineStatus');
-    pill.innerHTML = '<span class="dot" style="background:var(--danger); box-shadow:0 0 6px var(--danger);"></span> decoder unavailable — use Paste URL';
-  }
+    const decoderReady = typeof jsQR !== 'undefined';
+    try{
+        const response = await fetch('/health');
+        const health = await response.json();
+        if(response.ok && health.model_loaded){
+            const accuracy = health.evaluation?.accuracy;
+            const accuracyText = Number.isFinite(accuracy) ? ` · held-out accuracy ${(accuracy * 100).toFixed(2)}%` : '';
+            pill.innerHTML = `<span class="dot" style="background:var(--safe);"></span> Random Forest ready${accuracyText}${decoderReady ? '' : ' — QR decoder unavailable'}`;
+            if(Number.isFinite(accuracy)){
+                pill.title = `Measured on ${health.evaluation.test_rows} rows from a stratified 80/20 holdout. This is a dataset-level evaluation, not the confidence for an individual URL.`;
+            }
+            return;
+        }
+    }catch(error){
+        pill.innerHTML = '<span class="dot" style="background:var(--danger);"></span> model service unavailable';
+        return;
+    }
+    pill.innerHTML = '<span class="dot" style="background:var(--danger);"></span> model not loaded — train it first';
 });
 </script>
 

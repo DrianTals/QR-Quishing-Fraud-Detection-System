@@ -1,577 +1,293 @@
-filename,url,label,predicted,correct
-malicious_318519.png,"318519    http://sanrosindia.com/fonts/cn/mail/c/DHLPARC...
-Name: url, dtype: object",1,0,False
-benign_1698.png,"1698    https://www.en.wikipedia.org/wiki/Category:196...
-Name: url, dtype: object",0,0,True
-malicious_318139.png,"318139    http://www.m.facebook.com.social.login.xdemo.l...
-Name: url, dtype: object",1,1,True
-benign_14503.png,"14503    https://www.eventful.com/montreal/venues/casa-...
-Name: url, dtype: object",0,1,False
-malicious_322011.png,"322011    http://random.finemedia.com.hk/
-Name: url, dtype: object",1,1,True
-malicious_319496.png,"319496    http://www.liversurgery.com.sg/includes/Zone1
-Name: url, dtype: object",1,0,False
-malicious_321018.png,"321018    http://cpcholding.com/xmlrpc/mm/
-Name: url, dtype: object",1,1,True
-benign_31675.png,"31675    https://www.janice-fehlauer.suite101.com/which...
-Name: url, dtype: object",0,0,True
-malicious_318156.png,"318156    http://info02887166ft.000webhostapp.com/Paymen...
-Name: url, dtype: object",1,0,False
-benign_21748.png,"21748    https://www.genforum.genealogy.com/bigras/
-Name: url, dtype: object",0,0,True
-malicious_318026.png,"318026    http://www.bestchoicerates.ca/wp-includes/js/p...
-Name: url, dtype: object",1,1,True
-malicious_322141.png,"322141    http://antoluxlda.com/Wire/Bwne/image.htm
-Name: url, dtype: object",1,1,True
-malicious_321063.png,"321063    http://au699.com/sortfinancial/
-Name: url, dtype: object",1,0,False
-benign_15655.png,"15655    https://www.familytreemaker.genealogy.com/user...
-Name: url, dtype: object",0,1,False
-malicious_320323.png,"320323    http://borwita.co.id/css/GD
-Name: url, dtype: object",1,1,True
-synthetic_017.png,http://tinyurl.com/bpi-verify-2026,1,1,True
-malicious_323219.png,"323219    http://two-of-us.at/images/au.exe
-Name: url, dtype: object",1,1,True
-benign_2244.png,"2244    https://www.en.wikipedia.org/wiki/Category:Que...
-Name: url, dtype: object",0,1,False
-benign_24884.png,"24884    https://www.gwponlinebibliography.blogspot.com/
-Name: url, dtype: object",0,1,False
-benign_26975.png,"26975    https://www.homepage.mac.com/carpenter.archite...
-Name: url, dtype: object",0,0,True
-benign_17826.png,"17826    https://www.flaggedrevs.labs.wikimedia.org/wik...
-Name: url, dtype: object",0,0,True
-benign_28481.png,"28481    https://www.icehockey.wikia.com/wiki/Bernie_Ge...
-Name: url, dtype: object",0,0,True
-benign_16571.png,"16571    https://www.fernandodeholanda.com/os-votos-dos...
-Name: url, dtype: object",0,0,True
-benign_23997.png,"23997    https://www.graduateschool.topuniversities.com...
-Name: url, dtype: object",0,0,True
-benign_24900.png,"24900    https://www.gyroscope.oztix.com.au/
-Name: url, dtype: object",0,0,True
-malicious_319984.png,"319984    http://www.ilc.pl/ep/documents/document/0/e2f1...
-Name: url, dtype: object",1,0,False
-malicious_321559.png,"321559    http://sebastianalonso.com.ar/wp/Dropbox/
-Name: url, dtype: object",1,1,True
-benign_12946.png,"12946    https://www.english.turkcebilgi.com/List+of+st...
-Name: url, dtype: object",0,0,True
-malicious_317245.png,"317245    http://janganpercaya.000webhostapp.com/recover...
-Name: url, dtype: object",1,0,False
-benign_24329.png,"24329    https://www.grom-a-lee.blogspot.com/2011/03/ot...
-Name: url, dtype: object",0,1,False
-benign_29345.png,"29345    https://www.in.answers.yahoo.com/question/inde...
-Name: url, dtype: object",0,0,True
-benign_20549.png,"20549    https://www.friendshipandlovepoetry.net/
-Name: url, dtype: object",0,0,True
-benign_20028.png,"20028    https://www.freepages.genealogy.rootsweb.ances...
-Name: url, dtype: object",0,1,False
-benign_21214.png,"21214    https://www.garrettjackstock.com/
-Name: url, dtype: object",0,1,False
-benign_18213.png,"18213    https://www.foodpages.ca/?find=Restaurants&nea...
-Name: url, dtype: object",0,0,True
-benign_22354.png,"22354    https://www.genforum.genealogy.com/montague/me...
-Name: url, dtype: object",0,0,True
-benign_17814.png,"17814    https://www.flaggedrevs.labs.wikimedia.org/wik...
-Name: url, dtype: object",0,0,True
-synthetic_020.png,http://bdo.com-secure-login.tk/verify,1,1,True
-benign_26332.png,"26332    https://www.historianresearch.com/Aberdeen-roy...
-Name: url, dtype: object",0,1,False
-benign_29607.png,"29607    https://www.infinitymec.com/
-Name: url, dtype: object",0,0,True
-benign_22812.png,"22812    https://www.georgekelley.org/?p=3797
-Name: url, dtype: object",0,0,True
-malicious_319566.png,"319566    http://ippnstaff.com/document/8ae054fe894fcf9f...
-Name: url, dtype: object",1,0,False
-malicious_320106.png,"320106    http://herdinitiative.org/tmp/shareddoc/docs2
-Name: url, dtype: object",1,1,True
-benign_11705.png,"11705    https://www.en.wikipedia.org/wiki/World_Market
-Name: url, dtype: object",0,0,True
-malicious_321031.png,"321031    http://servicepaypal.myjino.ru/payus/bc31b3f35...
-Name: url, dtype: object",1,1,True
-malicious_318532.png,"318532    http://www.corus-avocats.com/wp-includes/DHLEx...
-Name: url, dtype: object",1,0,False
-benign_30100.png,"30100    https://www.internatlibs.mcgill.ca/
-Name: url, dtype: object",0,1,False
-benign_23879.png,"23879    https://www.gothic-decades.blogspot.com/
-Name: url, dtype: object",0,0,True
-benign_31251.png,"31251    https://www.itunes.apple.com/us/artist/dick-po...
-Name: url, dtype: object",0,1,False
-malicious_323093.png,"323093    http://tube8vidsuty.dnset.com/2013/girl-fucked...
-Name: url, dtype: object",1,1,True
-benign_14661.png,"14661    https://www.events.twincities.com/st-paul-mn/v...
-Name: url, dtype: object",0,1,False
-benign_25877.png,"25877    https://www.hermannmissouri.com/
-Name: url, dtype: object",0,0,True
-benign_25853.png,"25853    https://www.heretowatch.blogspot.com/2011/07/n...
-Name: url, dtype: object",0,1,False
-benign_16492.png,"16492    https://www.felaries65.livejournal.com/27537.html
-Name: url, dtype: object",0,0,True
-malicious_322806.png,"322806    http://skiholidays4beginners.com/subtraction-s...
-Name: url, dtype: object",1,0,False
-benign_30155.png,"30155    https://www.intraweb.stockton.edu/eyos/page.cf...
-Name: url, dtype: object",0,0,True
-malicious_319925.png,"319925    http://www.popolarevicenza.it.buckweld.com/bpv...
-Name: url, dtype: object",1,0,False
-malicious_319695.png,"319695    http://fbcancelbock6w.at.ua/confirmation2.html...
-Name: url, dtype: object",1,1,True
-benign_12037.png,"12037    https://www.en.wordpress.com/tag/gary-payton/
-Name: url, dtype: object",0,1,False
-malicious_319344.png,"319344    http://homelarimoveis.com.br/escrlturas/boxdro...
-Name: url, dtype: object",1,1,True
-benign_2984.png,"2984    https://www.en.wikipedia.org/wiki/Dale_Atkeson
-Name: url, dtype: object",0,0,True
-benign_17871.png,"17871    https://www.flatovercrest.com/
-Name: url, dtype: object",0,1,False
-malicious_318302.png,"318302    http://yayasanjakpus.org/wordpresss/outlook/ou...
-Name: url, dtype: object",1,1,True
-benign_26552.png,"26552    https://www.hockeydraftcentral.com/1970/70main...
-Name: url, dtype: object",0,1,False
-benign_21279.png,"21279    https://www.gawker.com/alex-mccord
-Name: url, dtype: object",0,0,True
-malicious_322265.png,"322265    http://www.consultoriosplaza.com.ar/plugins/ed...
-Name: url, dtype: object",1,1,True
-malicious_316433.png,"316433    http://telasprado.com.br/scripts/logox/biz/
-Name: url, dtype: object",1,1,True
-benign_2292.png,"2292    https://www.en.wikipedia.org/wiki/Category:Sou...
-Name: url, dtype: object",0,0,True
-benign_28065.png,"28065    https://www.hummingbird604.com/2011/09/09/5x-f...
-Name: url, dtype: object",0,0,True
-benign_21510.png,"21510    https://www.genealogytrails.com/ill/cook/birth...
-Name: url, dtype: object",0,1,False
-benign_13280.png,"13280    https://www.entomama.com/2011/11/03/team-retch...
-Name: url, dtype: object",0,0,True
-benign_29269.png,"29269    https://www.imgur.com/gallery/9kmxv
-Name: url, dtype: object",0,1,False
-malicious_321049.png,"321049    http://nalborzco.ir/BU/wp-admin/comcast/comcas...
-Name: url, dtype: object",1,0,False
-benign_24974.png,"24974    https://www.hackforums.net/
-Name: url, dtype: object",0,0,True
-benign_25559.png,"25559    https://www.healpth.com/doctors/zachary-gordon...
-Name: url, dtype: object",0,1,False
-malicious_320154.png,"320154    http://mytravelplan.com/auth.inet.ent_Logon-re...
-Name: url, dtype: object",1,0,False
-benign_16306.png,"16306    https://www.fashion.rightcelebrity.com/?p=850
-Name: url, dtype: object",0,0,True
-benign_22672.png,"22672    https://www.genforum.genealogy.com/wyatt/page9...
-Name: url, dtype: object",0,1,False
-benign_15731.png,"15731    https://www.familytreemaker.genealogy.com/user...
-Name: url, dtype: object",0,0,True
-synthetic_007.png,http://shopeepay-claim-reward.cf/promo,1,1,True
-malicious_316955.png,"316955    http://40hotdeals.com/forever/ourtime1/v3/memb...
-Name: url, dtype: object",1,1,True
-malicious_318461.png,"318461    http://privatessecond.000webhostapp.com/recove...
-Name: url, dtype: object",1,0,False
-benign_26156.png,"26156    https://www.highschool.rivals.com/content.asp?...
-Name: url, dtype: object",0,0,True
-malicious_318226.png,"318226    https://fb-secure-info2017.000webhostapp.com/r...
-Name: url, dtype: object",1,1,True
-benign_26210.png,"26210    https://www.highsierracycling.com/product-list...
-Name: url, dtype: object",0,0,True
-malicious_318730.png,"318730    https://sites.google.com/site/help10410202010/
-Name: url, dtype: object",1,1,True
-malicious_320715.png,"320715    http://hiroba.dqx.jp.isuel.usa.cc/account/app/...
-Name: url, dtype: object",1,1,True
-benign_32375.png,"32375    https://www.jimlynchtattoos.com/
-Name: url, dtype: object",0,0,True
-benign_16557.png,"16557    https://www.fenopy.eu/torrent/petr+zelenka+amp...
-Name: url, dtype: object",0,0,True
-malicious_321001.png,"321001    http://www.byupdate.com/tested/DHL_%20Trackinn...
-Name: url, dtype: object",1,1,True
-malicious_320224.png,"320224    https://bbrasilclientescadas.websiteseguro.com...
-Name: url, dtype: object",1,1,True
-benign_2370.png,"2370    https://www.en.wikipedia.org/wiki/Category:Yea...
-Name: url, dtype: object",0,0,True
-benign_17688.png,"17688    https://www.firstcityevents.blogspot.com/2010/...
-Name: url, dtype: object",0,0,True
-malicious_322497.png,"322497    http://www.xn--9dbzbrb.co.il/wp-admin/domain/s...
-Name: url, dtype: object",1,1,True
-malicious_316489.png,"316489    http://bit.do/dww2y6
-Name: url, dtype: object",1,0,False
-benign_17830.png,"17830    https://www.flagspot.net/flags/ca!.html
-Name: url, dtype: object",0,0,True
-malicious_319619.png,"319619    http://www.swm-as.com/invest/share/2015
-Name: url, dtype: object",1,1,True
-benign_14816.png,"14816    https://www.exa.gmnews.com/news/2011-09-29/Spo...
-Name: url, dtype: object",0,1,False
-malicious_319190.png,"319190    http://secure.square.login-sezy.usa.cc/
-Name: url, dtype: object",1,1,True
-malicious_320877.png,"320877    http://apex6.com/wp-content/ad/VITAL/VITAL/VIT...
-Name: url, dtype: object",1,0,False
-benign_12086.png,"12086    https://www.enc.slider.com/Enc/Bradford
-Name: url, dtype: object",0,0,True
-malicious_323313.png,"323313    http://f.gj555.net/download/setups34338.exe
-Name: url, dtype: object",1,0,False
-benign_13576.png,"13576    https://www.espn.go.com/blog/big12/post/_/id/7...
-Name: url, dtype: object",0,0,True
-benign_17192.png,"17192    https://www.finance.yahoo.com/news/Biomass-Pow...
-Name: url, dtype: object",0,0,True
-malicious_318963.png,"318963    http://www.villabello.dk/wp-admin/network/boxM...
-Name: url, dtype: object",1,1,True
-benign_19089.png,"19089    https://www.forums.nyyfans.com/showthread.php/...
-Name: url, dtype: object",0,0,True
-malicious_316924.png,"316924    http://protecs-vip05.000webhostapp.com/payment...
-Name: url, dtype: object",1,0,False
-benign_1222.png,"1222    https://www.en.wikipedia.org/wiki/Bourcier
-Name: url, dtype: object",0,0,True
-malicious_320311.png,"320311    http://sindju.org.br/includes/bl/dhl/index.php...
-Name: url, dtype: object",1,1,True
-benign_2502.png,"2502    https://www.en.wikipedia.org/wiki/Charles_Will...
-Name: url, dtype: object",0,0,True
-benign_1479.png,"1479    https://www.en.wikipedia.org/wiki/Caleb_Carr
-Name: url, dtype: object",0,0,True
-malicious_319824.png,"319824    http://remotetechs.com/newsite/confirm-your-pa...
-Name: url, dtype: object",1,1,True
-benign_10012.png,"10012    https://www.en.wikipedia.org/wiki/Sovereignty
-Name: url, dtype: object",0,1,False
-benign_13750.png,"13750    https://www.espn.go.com/blog/truehoop/post/_/i...
-Name: url, dtype: object",0,0,True
-malicious_318265.png,"318265    http://shamstayyar.000webhostapp.com/recovery-...
-Name: url, dtype: object",1,0,False
-malicious_321685.png,"321685    http://www.gyrogeo.com/n4/
-Name: url, dtype: object",1,0,False
-malicious_323293.png,"323293    http://down.feiyang163.com/soft/wbjfsys.exe
-Name: url, dtype: object",1,1,True
-malicious_316369.png,"316369    http://cliente-vip.com/bag/
-Name: url, dtype: object",1,1,True
-benign_19321.png,"19321    https://www.fox4kc.com/weather/
-Name: url, dtype: object",0,0,True
-malicious_319275.png,"319275    http://sirovina.com/Aol/alert/update.php
-Name: url, dtype: object",1,1,True
-benign_18108.png,"18108    https://www.fm.berkeley.edu/
-Name: url, dtype: object",0,1,False
-benign_31499.png,"31499    https://www.jacobjenkins.deviantart.com/
-Name: url, dtype: object",0,0,True
-malicious_322414.png,"322414    http://habc.com.br/wp-images/habc1/index.file/...
-Name: url, dtype: object",1,1,True
-malicious_320698.png,"320698    http://mtadumps.com/wp-admin/css/purchaseorder...
-Name: url, dtype: object",1,1,True
-malicious_318647.png,"318647    http://www.thegloriouschurch.org.za/buss/Googl...
-Name: url, dtype: object",1,0,False
-malicious_318799.png,"318799    http://www.hugoyjeanpaul.com/css/3D/bdd8d6f790...
-Name: url, dtype: object",1,1,True
-benign_18827.png,"18827    https://www.forums.about.com/ab-german/
-Name: url, dtype: object",0,0,True
-malicious_316676.png,"316676    http://www.hotelsinbharatpur.net/css/alibaba/l...
-Name: url, dtype: object",1,1,True
-malicious_320167.png,"320167    http://drop-box.metodistaebenezer.com.br/d29e5...
-Name: url, dtype: object",1,0,False
-malicious_320122.png,"320122    http://www.vajinismus.eu/ttyuy/PY/f3a7f6df0177...
-Name: url, dtype: object",1,1,True
-malicious_323178.png,"323178    http://slimxxxtubebmq.dnset.com/2013/girl-fuck...
-Name: url, dtype: object",1,0,False
-malicious_321984.png,"321984    http://sefti-pegas-malta2016.esy.es/indexx.htm...
-Name: url, dtype: object",1,0,False
-malicious_317066.png,"317066    http://app-1506650844.000webhostapp.com/
-Name: url, dtype: object",1,0,False
-benign_20352.png,"20352    https://www.freepages.genealogy.rootsweb.ances...
-Name: url, dtype: object",0,0,True
-benign_15043.png,"15043    https://www.ezinearticles.com/?Dune---House-At...
-Name: url, dtype: object",0,0,True
-benign_30559.png,"30559    https://www.irishlabour.com/?p=69
-Name: url, dtype: object",0,0,True
-malicious_318724.png,"318724    https://sites.google.com/site/recoveryfbhelpco...
-Name: url, dtype: object",1,1,True
-benign_14364.png,"14364    https://www.eucharisticadorationforpriests.blo...
-Name: url, dtype: object",0,0,True
-benign_28872.png,"28872    https://www.ideas.repec.org/e/c/pbe35.html
-Name: url, dtype: object",0,1,False
-malicious_319736.png,"319736    http://domowe.com/libraries/legacy/form/field/...
-Name: url, dtype: object",1,0,False
-malicious_322364.png,"322364    http://www.legendsmotorcycles.com/eric-su/su/
-Name: url, dtype: object",1,1,True
-malicious_320705.png,"320705    http://autoservicioslubrirepuestos.com/wp-incl...
-Name: url, dtype: object",1,0,False
-benign_18192.png,"18192    https://www.food-beverages.exportersindia.com/...
-Name: url, dtype: object",0,0,True
-malicious_321488.png,"321488    http://www.emcbilisim.net/AMX/secured/
-Name: url, dtype: object",1,1,True
-benign_16718.png,"16718    https://www.fifthdown.blogs.nytimes.com/2010/0...
-Name: url, dtype: object",0,0,True
-benign_25370.png,"25370    https://www.hawaii-five-0.proboards.com/index....
-Name: url, dtype: object",0,0,True
-malicious_319657.png,"319657    http://id1016.atspace.co.uk/ID-YOUR-ACCOUNT/
-Name: url, dtype: object",1,0,False
-malicious_321172.png,"321172    http://paypal.com.verifity.cgi-info-account.co...
-Name: url, dtype: object",1,1,True
-malicious_322975.png,"322975    http://freefblikes.phpnet.us
-Name: url, dtype: object",1,0,False
-malicious_319120.png,"319120    http://www.hellooyun.com/php/ww2usaa/www32ew/u...
-Name: url, dtype: object",1,1,True
-benign_24193.png,"24193    https://www.greenday.warnerbrosrecordsstore.com/
-Name: url, dtype: object",0,0,True
-malicious_321377.png,"321377    http://ringtonsfranchise.co.uk/wp-includes/Sim...
-Name: url, dtype: object",1,1,True
-benign_27351.png,"27351    https://www.hometracks.nascar.com/drivers/nwsm...
-Name: url, dtype: object",0,0,True
-benign_18854.png,"18854    https://www.forums.azbilliards.com/showthread....
-Name: url, dtype: object",0,0,True
-malicious_319140.png,"319140    http://tatarlar.pro/images/usaa-secure/usaa-se...
-Name: url, dtype: object",1,1,True
-malicious_318090.png,"318090    http://info02887166ft.000webhostapp.com/Paymen...
-Name: url, dtype: object",1,0,False
-malicious_323102.png,"323102    http://slimxxxtubesrw.ddns.name/2013/girl-fuck...
-Name: url, dtype: object",1,1,True
-malicious_316576.png,"316576    https://www.bitminershop.net
-Name: url, dtype: object",1,1,True
-malicious_323042.png,"323042    http://tube8vidswtb.ddns.name/2013/girl-fucked...
-Name: url, dtype: object",1,1,True
-benign_19118.png,"19118    https://www.forums.radioreference.com/missouri...
-Name: url, dtype: object",0,1,False
-benign_23227.png,"23227    https://www.globalgrind.com/music/oneal-mcknig...
-Name: url, dtype: object",0,1,False
-malicious_318501.png,"318501    http://biysk.mabix.ru/wp-content/upgrade/index...
-Name: url, dtype: object",1,1,True
-malicious_321681.png,"321681    http://smnaftowiec.sanok.biz/grafika/smna/coun...
-Name: url, dtype: object",1,1,True
-malicious_320299.png,"320299    http://www.avanet24.ir/secure.pdf/Expenses/
-Name: url, dtype: object",1,1,True
-benign_16817.png,"16817    https://www.filepod.com/?q=columbo+season+2+ep...
-Name: url, dtype: object",0,0,True
-malicious_320980.png,"320980    http://www.hlpremoldados.com.br/wp-admin/dropb...
-Name: url, dtype: object",1,0,False
-benign_13375.png,"13375    https://www.equallifemusic.com/
-Name: url, dtype: object",0,0,True
-malicious_322111.png,"322111    http://cityofdreams.com.ua/tmp/pa/6jh79zp08x64...
-Name: url, dtype: object",1,1,True
-malicious_316818.png,"316818    http://studio-taddei.it/din/New%20folder/Index...
-Name: url, dtype: object",1,1,True
-benign_11721.png,"11721    https://www.en.wikipedia.org/wiki/Xiamen
-Name: url, dtype: object",0,1,False
-benign_17402.png,"17402    https://www.financial-dictionary.thefreedictio...
-Name: url, dtype: object",0,0,True
-malicious_317982.png,"317982    http://infoactive.000webhostapp.com/Payment-up...
-Name: url, dtype: object",1,0,False
-benign_29973.png,"29973    https://www.interceder.net/topic/Ben-Mulroney
-Name: url, dtype: object",0,0,True
-malicious_320731.png,"320731    http://www.nukestudio.org/huoxiaodong.org/newd...
-Name: url, dtype: object",1,0,False
-malicious_319851.png,"319851    http://www.futureassociate.com.np/Paypal/secur...
-Name: url, dtype: object",1,0,False
-malicious_319862.png,"319862    http://www.ayseresa.com/Charles%20Flesch/
-Name: url, dtype: object",1,0,False
-benign_27376.png,"27376    https://www.homotography.blogspot.com/2011/02/...
-Name: url, dtype: object",0,1,False
-malicious_320912.png,"320912    http://bookkeepers.directory/mama/mama/a6cd59d...
-Name: url, dtype: object",1,1,True
-benign_10188.png,"10188    https://www.en.wikipedia.org/wiki/Storey_(surn...
-Name: url, dtype: object",0,1,False
-benign_17959.png,"17959    https://www.fliiby.com/search.php?q=Ronnie+Wil...
-Name: url, dtype: object",0,0,True
-malicious_320232.png,"320232    http://www.csdesigns.co.in/csdesigns/csd-admin...
-Name: url, dtype: object",1,1,True
-benign_22017.png,"22017    https://www.genforum.genealogy.com/forrest/all...
-Name: url, dtype: object",0,0,True
-malicious_321591.png,"321591    http://www.phistek.com/upload/bookmark/index.p...
-Name: url, dtype: object",1,1,True
-malicious_318060.png,"318060    https://kampret002.000webhostapp.com/Payment-u...
-Name: url, dtype: object",1,1,True
-malicious_316941.png,"316941    http://team-recovery-program.biz/help/recovery...
-Name: url, dtype: object",1,0,False
-benign_21009.png,"21009    https://www.gallery.bonvin.tv/details.php?imag...
-Name: url, dtype: object",0,0,True
-malicious_316816.png,"316816    http://www.luskysuites-htl.co.il/img/common/pa...
-Name: url, dtype: object",1,1,True
-malicious_323176.png,"323176    http://slimxxxtubebej.dnset.com/2013/girl-fuck...
-Name: url, dtype: object",1,0,False
-malicious_322656.png,"322656    http://vvvic.com
-Name: url, dtype: object",1,1,True
-malicious_319763.png,"319763    http://vigilancia.lapaz.bo/http/Outlook-Login....
-Name: url, dtype: object",1,1,True
-benign_17746.png,"17746    https://www.fitchfulton.com/
-Name: url, dtype: object",0,0,True
-malicious_317770.png,"317770    http://banking.sparkasse-deutschland-sicherhei...
-Name: url, dtype: object",1,0,False
-benign_30680.png,"30680    https://www.isohunt.com/torrent_details/473078...
-Name: url, dtype: object",0,0,True
-benign_1464.png,"1464    https://www.en.wikipedia.org/wiki/Cadavres
-Name: url, dtype: object",0,0,True
-malicious_318614.png,"318614    http://estatesinvestors.com/wp-includes/widget...
-Name: url, dtype: object",1,0,False
-synthetic_001.png,http://gcash-verify-account.tk/login,1,1,True
-benign_20445.png,"20445    https://www.freetradebreakfast.eventbrite.com/
-Name: url, dtype: object",0,0,True
-synthetic_030.png,https://www.grab.com/ph/en/,0,0,True
-benign_22675.png,"22675    https://www.genius-gamepad-maxfire-blaze-drive...
-Name: url, dtype: object",0,0,True
-malicious_323011.png,"323011    http://manoske.com/main.php?label=TJaxqKIV0+wl...
-Name: url, dtype: object",1,0,False
-benign_28036.png,"28036    https://www.hulkshare.com/91w84syal3qk
-Name: url, dtype: object",0,0,True
-malicious_320062.png,"320062    http://mehirim.com/nl/login/index.php
-Name: url, dtype: object",1,1,True
-benign_25023.png,"25023    https://www.halcyonicfalconx.newgrounds.com/
-Name: url, dtype: object",0,0,True
-malicious_319978.png,"319978    http://www.sarminiatures.com/Insurance/Insuran...
-Name: url, dtype: object",1,0,False
-benign_11683.png,"11683    https://www.en.wikipedia.org/wiki/Wolf_Blitzer
-Name: url, dtype: object",0,0,True
-benign_16784.png,"16784    https://www.filecraft.com/?q=anke+engelke+nippel
-Name: url, dtype: object",0,0,True
-malicious_320221.png,"320221    https://bbrasilclientescadas.websiteseguro.com...
-Name: url, dtype: object",1,1,True
-malicious_320251.png,"320251    http://www.erncchile.cl/drop/Gdoccc/index.php
-Name: url, dtype: object",1,1,True
-benign_2029.png,"2029    https://www.en.wikipedia.org/wiki/Category:Fil...
-Name: url, dtype: object",0,0,True
-benign_21200.png,"21200    https://www.gardening.about.com/u/ua/rose1/Rea...
-Name: url, dtype: object",0,1,False
-malicious_320413.png,"320413    http://www.indianfriedchicken.net/managment/pa...
-Name: url, dtype: object",1,0,False
-malicious_320643.png,"320643    http://www.redboxtraining.com/Tutorials/settin...
-Name: url, dtype: object",1,0,False
-benign_28300.png,"28300    https://www.iamcomic.wetpaint.com/
-Name: url, dtype: object",0,0,True
-malicious_320130.png,"320130    http://apcs.edu.pl/images/dz.html
-Name: url, dtype: object",1,1,True
-benign_18717.png,"18717    https://www.forum.robotevents.com/design/
-Name: url, dtype: object",0,1,False
-malicious_317921.png,"317921    https://sites.google.com/site/protectionoffice...
-Name: url, dtype: object",1,1,True
-malicious_321228.png,"321228    http://distribuidorasantana.com/dbox3/index.ph...
-Name: url, dtype: object",1,1,True
-benign_27411.png,"27411    https://www.hoodedutilitarian.com/2010/03/old-...
-Name: url, dtype: object",0,1,False
-malicious_318644.png,"318644    http://professionalcommunications.ca/entr3500/...
-Name: url, dtype: object",1,0,False
-benign_26347.png,"26347    https://www.historical-births.blogspot.com/201...
-Name: url, dtype: object",0,0,True
-malicious_321227.png,"321227    http://adicon.com.cn/images/qkfiles/201507/Hom...
-Name: url, dtype: object",1,1,True
-malicious_317191.png,"317191    http://donar.fundacionmarialuisa.org/es/ezee/o...
-Name: url, dtype: object",1,1,True
-benign_28537.png,"28537    https://www.icehockey.wikia.com/wiki/Cory_Pecker
-Name: url, dtype: object",0,0,True
-benign_28956.png,"28956    https://www.idolator.com/5686082/the-black-eye...
-Name: url, dtype: object",0,0,True
-benign_14761.png,"14761    https://www.everything.explained.at/contents/l...
-Name: url, dtype: object",0,0,True
-synthetic_034.png,https://www.philstar.com/,0,0,True
-benign_22489.png,"22489    https://www.genforum.genealogy.com/ringo/
-Name: url, dtype: object",0,0,True
-benign_27225.png,"27225    https://www.homepages.rootsweb.ancestry.com/~m...
-Name: url, dtype: object",0,1,False
-benign_13028.png,"13028    https://www.english.turkcebilgi.com/Politics+o...
-Name: url, dtype: object",0,0,True
-benign_31662.png,"31662    https://www.jancoks.blogspot.com/
-Name: url, dtype: object",0,0,True
-benign_15218.png,"15218    https://www.fabpedigree.com/s028/f325401.htm
-Name: url, dtype: object",0,0,True
-benign_31892.png,"31892    https://www.jazztimes.com/articles/19894-marcu...
-Name: url, dtype: object",0,0,True
-benign_24916.png,"24916    https://www.h2g2.com/dna/h2g2/classic/A810316
-Name: url, dtype: object",0,0,True
-malicious_317288.png,"317288    https://wwwpages093.000webhostapp.com/recovery...
-Name: url, dtype: object",1,1,True
-malicious_322377.png,"322377    http://www.cocinacocina.com/img/
-Name: url, dtype: object",1,1,True
-benign_11646.png,"11646    https://www.en.wikipedia.org/wiki/William_Warner
-Name: url, dtype: object",0,1,False
-malicious_321804.png,"321804    http://www.monfactufree.com/freemobilemoncompt...
-Name: url, dtype: object",1,0,False
-malicious_322745.png,"322745    http://luwyou.com/photos.php
-Name: url, dtype: object",1,0,False
-malicious_321221.png,"321221    http://www.jilliandco.com/rem/google_doc%20(2)...
-Name: url, dtype: object",1,1,True
-malicious_316665.png,"316665    https://sites.google.com/site/helpunblockingin...
-Name: url, dtype: object",1,1,True
-malicious_322481.png,"322481    http://admin.twinstoresz.com/c2a8da9c931f3e10b...
-Name: url, dtype: object",1,0,False
-benign_32739.png,"32739    https://www.johnmacfarlane.net/church.html
-Name: url, dtype: object",0,0,True
-malicious_320330.png,"320330    http://www.simpledentremoval.com.au/wp-content...
-Name: url, dtype: object",1,1,True
-benign_16208.png,"16208    https://www.fantasyhockey.usatoday.com/content...
-Name: url, dtype: object",0,0,True
-benign_21173.png,"21173    https://www.gapellet.brinkster.net/charlesdesc...
-Name: url, dtype: object",0,0,True
-malicious_322541.png,"322541    http://nordiccountry.cz
-Name: url, dtype: object",1,0,False
-malicious_320874.png,"320874    http://www.jafra.ae/wp-includes/dropbox/dropbo...
-Name: url, dtype: object",1,1,True
-benign_18367.png,"18367    https://www.ford-econoline.blogspot.com/
-Name: url, dtype: object",0,0,True
-malicious_316508.png,"316508    http://infinitythoughts.com/xlogic/invoice/inv...
-Name: url, dtype: object",1,1,True
-malicious_319973.png,"319973    http://appleid.apple.com-subscriptions.manager...
-Name: url, dtype: object",1,1,True
-benign_2516.png,"2516    https://www.en.wikipedia.org/wiki/Charlie_Beamon
-Name: url, dtype: object",0,0,True
-benign_17799.png,"17799    https://www.flaggedrevs.labs.wikimedia.org/wik...
-Name: url, dtype: object",0,1,False
-benign_16474.png,"16474    https://www.federal-circuits.vlex.com/vid/wsb-...
-Name: url, dtype: object",0,0,True
-malicious_321128.png,"321128    http://hiroba.dqx.jp.imxzl.usa.cc/account/app/...
-Name: url, dtype: object",1,1,True
-malicious_321104.png,"321104    http://mundoseco.com.br/tec
-Name: url, dtype: object",1,0,False
-benign_2116.png,"2116    https://www.en.wikipedia.org/wiki/Category:Liv...
-Name: url, dtype: object",0,0,True
-malicious_320034.png,"320034    http://auth01.secure.server.chase.verification...
-Name: url, dtype: object",1,1,True
-synthetic_009.png,http://bdo-secure-login.work/otp,1,1,True
-malicious_320916.png,"320916    http://www.pt-ssi.com/plugins/user/reviewonlin...
-Name: url, dtype: object",1,1,True
-benign_1896.png,"1896    https://www.en.wikipedia.org/wiki/Category:Chi...
-Name: url, dtype: object",0,0,True
-malicious_321885.png,"321885    http://www.safetem.com/fcid/confirm.php?cmd=lo...
-Name: url, dtype: object",1,1,True
-benign_27751.png,"27751    https://www.houle.familytreeguide.com/getperso...
-Name: url, dtype: object",0,0,True
-benign_15808.png,"15808    https://www.familytreemaker.genealogy.com/user...
-Name: url, dtype: object",0,0,True
-benign_32882.png,"32882    https://www.jonleeellis.com/
-Name: url, dtype: object",0,1,False
-benign_32960.png,"32960    https://www.joshmartincountry.com/
-Name: url, dtype: object",0,0,True
-malicious_317502.png,"317502    http://computer-32nf2.stream/view/
-Name: url, dtype: object",1,0,False
-malicious_321062.png,"321062    http://ns1.globalwebhost.com.ng/~diadem/images...
-Name: url, dtype: object",1,0,False
-benign_32170.png,"32170    https://www.jeopardylabs.com/
-Name: url, dtype: object",0,0,True
-malicious_320672.png,"320672    http://www.vitamia-nahrungsergaenzung.de/mails...
-Name: url, dtype: object",1,0,False
-malicious_322354.png,"322354    http://www.bd-dispatch.co.uk/media/jce/Zone1/Z...
-Name: url, dtype: object",1,1,True
-benign_20756.png,"20756    https://www.fullcomment.nationalpost.com/2011/...
-Name: url, dtype: object",0,0,True
-malicious_320214.png,"320214    http://inversionencatalunya.es/https:/atendime...
-Name: url, dtype: object",1,0,False
-malicious_322965.png,"322965    http://directxex.com/uploads/1803412028.mintt.exe
-Name: url, dtype: object",1,0,False
-benign_12025.png,"12025    https://www.en.wordpress.com/tag/alfre-woodard/
-Name: url, dtype: object",0,1,False
-malicious_319875.png,"319875    http://www.lecznica-nowysacz.pl/verify/id/welc...
-Name: url, dtype: object",1,1,True
-benign_20662.png,"20662    https://www.fsntopnews.blogspot.com/
-Name: url, dtype: object",0,1,False
-malicious_318671.png,"318671    http://saralaska.org/grafiks/gdoc-secure/7867b...
-Name: url, dtype: object",1,1,True
-malicious_317819.png,"317819    https://www.sunsetevents.ae/my_code/ext/my_dat...
-Name: url, dtype: object",1,1,True
-malicious_318051.png,"318051    http://protects-155.000webhostapp.com/payment-...
-Name: url, dtype: object",1,0,False
-benign_28570.png,"28570    https://www.icehockey.wikia.com/wiki/Gilbert_D...
-Name: url, dtype: object",0,0,True
-synthetic_029.png,https://www.lazada.com.ph/,0,0,True
-malicious_319328.png,"319328    http://secure.square.logindqxe.usa.cc/account/...
-Name: url, dtype: object",1,1,True
-benign_29665.png,"29665    https://www.infomotions.com/etexts/gutenberg/d...
-Name: url, dtype: object",0,1,False
-benign_1710.png,"1710    https://www.en.wikipedia.org/wiki/Category:198...
-Name: url, dtype: object",0,0,True
-benign_20750.png,"20750    https://www.fullcomment.nationalpost.com/2011/...
-Name: url, dtype: object",0,0,True
-malicious_321248.png,"321248    http://www.pousadavieiras.com.br/sqqq/boa/
-Name: url, dtype: object",1,1,True
-benign_11173.png,"11173    https://www.en.wikipedia.org/wiki/V_sign
-Name: url, dtype: object",0,1,False
-benign_17411.png,"17411    https://www.financial-dictionary.thefreedictio...
-Name: url, dtype: object",0,0,True
-malicious_320031.png,"320031    http://recont.sovancobellara.com/5fdb1910bd7ae...
-Name: url, dtype: object",1,1,True
-malicious_317088.png,"317088    https://www.mountzioncc.org.uk/rida/customer_c...
-Name: url, dtype: object",1,1,True
-benign_21776.png,"21776    https://www.genforum.genealogy.com/boudreau/pa...
-Name: url, dtype: object",0,0,True
-malicious_321400.png,"321400    http://almomahidin.net/AA/bb/1/6/index.html?bi...
-Name: url, dtype: object",1,1,True
+filename,url,label,predicted,malicious_probability,correct
+malicious_318519.png,http://sanrosindia.com/fonts/cn/mail/c/DHLPARC,1,1,0.99,True
+benign_1698.png,https://www.en.wikipedia.org/wiki/Category:196,0,0,0.0,True
+malicious_318139.png,http://www.m.facebook.com.social.login.xdemo.l,1,1,1.0,True
+benign_14503.png,https://www.eventful.com/montreal/venues/casa-,0,0,0.005,True
+malicious_322011.png,http://random.finemedia.com.hk/,1,1,0.995,True
+malicious_319496.png,http://www.liversurgery.com.sg/includes/Zone1,1,1,0.985,True
+malicious_321018.png,http://cpcholding.com/xmlrpc/mm/,1,1,1.0,True
+benign_31675.png,https://www.janice-fehlauer.suite101.com/which,0,0,0.005,True
+malicious_318156.png,http://info02887166ft.000webhostapp.com/Paymen,1,1,1.0,True
+benign_21748.png,https://www.genforum.genealogy.com/bigras/,0,0,0.0,True
+malicious_318026.png,http://www.bestchoicerates.ca/wp-includes/js/p,1,1,1.0,True
+malicious_322141.png,http://antoluxlda.com/Wire/Bwne/image.htm,1,1,1.0,True
+malicious_321063.png,http://au699.com/sortfinancial/,1,1,1.0,True
+benign_15655.png,https://www.familytreemaker.genealogy.com/user,0,0,0.0,True
+malicious_320323.png,http://borwita.co.id/css/GD,1,1,0.995,True
+synthetic_017.png,http://tinyurl.com/bpi-verify-2026,1,1,1.0,True
+malicious_323219.png,http://two-of-us.at/images/au.exe,1,1,1.0,True
+benign_2244.png,https://www.en.wikipedia.org/wiki/Category:Que,0,0,0.0,True
+benign_24884.png,https://www.gwponlinebibliography.blogspot.com/,0,0,0.0,True
+benign_26975.png,https://www.homepage.mac.com/carpenter.archite,0,0,0.015,True
+benign_17826.png,https://www.flaggedrevs.labs.wikimedia.org/wik,0,0,0.0,True
+benign_28481.png,https://www.icehockey.wikia.com/wiki/Bernie_Ge,0,0,0.0,True
+benign_16571.png,https://www.fernandodeholanda.com/os-votos-dos,0,0,0.0,True
+benign_23997.png,https://www.graduateschool.topuniversities.com,0,0,0.055,True
+benign_24900.png,https://www.gyroscope.oztix.com.au/,0,0,0.0,True
+malicious_319984.png,http://www.ilc.pl/ep/documents/document/0/e2f1,1,1,0.975,True
+malicious_321559.png,http://sebastianalonso.com.ar/wp/Dropbox/,1,1,1.0,True
+benign_12946.png,https://www.english.turkcebilgi.com/List+of+st,0,0,0.0,True
+malicious_317245.png,http://janganpercaya.000webhostapp.com/recover,1,1,1.0,True
+benign_24329.png,https://www.grom-a-lee.blogspot.com/2011/03/ot,0,0,0.13,True
+benign_29345.png,https://www.in.answers.yahoo.com/question/inde,0,0,0.0,True
+benign_20549.png,https://www.friendshipandlovepoetry.net/,0,0,0.145,True
+benign_20028.png,https://www.freepages.genealogy.rootsweb.ances,0,0,0.0,True
+benign_21214.png,https://www.garrettjackstock.com/,0,0,0.0,True
+benign_18213.png,https://www.foodpages.ca/?find=Restaurants&nea,0,0,0.0,True
+benign_22354.png,https://www.genforum.genealogy.com/montague/me,0,0,0.0,True
+benign_17814.png,https://www.flaggedrevs.labs.wikimedia.org/wik,0,0,0.0,True
+synthetic_020.png,http://bdo.com-secure-login.tk/verify,1,1,1.0,True
+benign_26332.png,https://www.historianresearch.com/Aberdeen-roy,0,0,0.025,True
+benign_29607.png,https://www.infinitymec.com/,0,0,0.0,True
+benign_22812.png,https://www.georgekelley.org/?p=3797,0,0,0.005,True
+malicious_319566.png,http://ippnstaff.com/document/8ae054fe894fcf9f,1,1,1.0,True
+malicious_320106.png,http://herdinitiative.org/tmp/shareddoc/docs2,1,1,1.0,True
+benign_11705.png,https://www.en.wikipedia.org/wiki/World_Market,0,0,0.0,True
+malicious_321031.png,http://servicepaypal.myjino.ru/payus/bc31b3f35,1,1,1.0,True
+malicious_318532.png,http://www.corus-avocats.com/wp-includes/DHLEx,1,1,1.0,True
+benign_30100.png,https://www.internatlibs.mcgill.ca/,0,0,0.0,True
+benign_23879.png,https://www.gothic-decades.blogspot.com/,0,0,0.005,True
+benign_31251.png,https://www.itunes.apple.com/us/artist/dick-po,0,0,0.0,True
+malicious_323093.png,http://tube8vidsuty.dnset.com/2013/girl-fucked,1,1,1.0,True
+benign_14661.png,https://www.events.twincities.com/st-paul-mn/v,0,0,0.0,True
+benign_25877.png,https://www.hermannmissouri.com/,0,0,0.01,True
+benign_25853.png,https://www.heretowatch.blogspot.com/2011/07/n,0,0,0.015,True
+benign_16492.png,https://www.felaries65.livejournal.com/27537.html,0,0,0.09,True
+malicious_322806.png,http://skiholidays4beginners.com/subtraction-s,1,1,1.0,True
+benign_30155.png,https://www.intraweb.stockton.edu/eyos/page.cf,0,0,0.0,True
+malicious_319925.png,http://www.popolarevicenza.it.buckweld.com/bpv,1,1,0.975,True
+malicious_319695.png,http://fbcancelbock6w.at.ua/confirmation2.html,1,1,0.925,True
+benign_12037.png,https://www.en.wordpress.com/tag/gary-payton/,0,0,0.005,True
+malicious_319344.png,http://homelarimoveis.com.br/escrlturas/boxdro,1,1,1.0,True
+benign_2984.png,https://www.en.wikipedia.org/wiki/Dale_Atkeson,0,0,0.0,True
+benign_17871.png,https://www.flatovercrest.com/,0,0,0.1,True
+malicious_318302.png,http://yayasanjakpus.org/wordpresss/outlook/ou,1,1,1.0,True
+benign_26552.png,https://www.hockeydraftcentral.com/1970/70main,0,0,0.075,True
+benign_21279.png,https://www.gawker.com/alex-mccord,0,0,0.01,True
+malicious_322265.png,http://www.consultoriosplaza.com.ar/plugins/ed,1,1,0.995,True
+malicious_316433.png,http://telasprado.com.br/scripts/logox/biz/,1,1,0.99,True
+benign_2292.png,https://www.en.wikipedia.org/wiki/Category:Sou,0,0,0.0,True
+benign_28065.png,https://www.hummingbird604.com/2011/09/09/5x-f,0,1,0.62,False
+benign_21510.png,https://www.genealogytrails.com/ill/cook/birth,0,0,0.08,True
+benign_13280.png,https://www.entomama.com/2011/11/03/team-retch,0,0,0.16,True
+benign_29269.png,https://www.imgur.com/gallery/9kmxv,0,0,0.01,True
+malicious_321049.png,http://nalborzco.ir/BU/wp-admin/comcast/comcas,1,1,1.0,True
+benign_24974.png,https://www.hackforums.net/,0,0,0.0,True
+benign_25559.png,https://www.healpth.com/doctors/zachary-gordon,0,0,0.01,True
+malicious_320154.png,http://mytravelplan.com/auth.inet.ent_Logon-re,1,1,1.0,True
+benign_16306.png,https://www.fashion.rightcelebrity.com/?p=850,0,0,0.035,True
+benign_22672.png,https://www.genforum.genealogy.com/wyatt/page9,0,0,0.0,True
+benign_15731.png,https://www.familytreemaker.genealogy.com/user,0,0,0.0,True
+synthetic_007.png,http://shopeepay-claim-reward.cf/promo,1,1,1.0,True
+malicious_316955.png,http://40hotdeals.com/forever/ourtime1/v3/memb,1,1,1.0,True
+malicious_318461.png,http://privatessecond.000webhostapp.com/recove,1,1,1.0,True
+benign_26156.png,https://www.highschool.rivals.com/content.asp?,0,0,0.0,True
+malicious_318226.png,https://fb-secure-info2017.000webhostapp.com/r,1,1,1.0,True
+benign_26210.png,https://www.highsierracycling.com/product-list,0,0,0.005,True
+malicious_318730.png,https://sites.google.com/site/help10410202010/,1,1,0.765,True
+malicious_320715.png,http://hiroba.dqx.jp.isuel.usa.cc/account/app/,1,1,1.0,True
+benign_32375.png,https://www.jimlynchtattoos.com/,0,0,0.005,True
+benign_16557.png,https://www.fenopy.eu/torrent/petr+zelenka+amp,0,0,0.01,True
+malicious_321001.png,http://www.byupdate.com/tested/DHL_%20Trackinn,1,1,1.0,True
+malicious_320224.png,https://bbrasilclientescadas.websiteseguro.com,1,1,0.61,True
+benign_2370.png,https://www.en.wikipedia.org/wiki/Category:Yea,0,0,0.0,True
+benign_17688.png,https://www.firstcityevents.blogspot.com/2010/,0,0,0.035,True
+malicious_322497.png,http://www.xn--9dbzbrb.co.il/wp-admin/domain/s,1,1,0.975,True
+malicious_316489.png,http://bit.do/dww2y6,1,1,0.985,True
+benign_17830.png,https://www.flagspot.net/flags/ca!.html,0,0,0.0,True
+malicious_319619.png,http://www.swm-as.com/invest/share/2015,1,1,0.995,True
+benign_14816.png,https://www.exa.gmnews.com/news/2011-09-29/Spo,0,0,0.025,True
+malicious_319190.png,http://secure.square.login-sezy.usa.cc/,1,1,1.0,True
+malicious_320877.png,http://apex6.com/wp-content/ad/VITAL/VITAL/VIT,1,1,0.99,True
+benign_12086.png,https://www.enc.slider.com/Enc/Bradford,0,0,0.0,True
+malicious_323313.png,http://f.gj555.net/download/setups34338.exe,1,1,0.97,True
+benign_13576.png,https://www.espn.go.com/blog/big12/post/_/id/7,0,0,0.0,True
+benign_17192.png,https://www.finance.yahoo.com/news/Biomass-Pow,0,0,0.0,True
+malicious_318963.png,http://www.villabello.dk/wp-admin/network/boxM,1,1,1.0,True
+benign_19089.png,https://www.forums.nyyfans.com/showthread.php/,0,0,0.0,True
+malicious_316924.png,http://protecs-vip05.000webhostapp.com/payment,1,1,0.99,True
+benign_1222.png,https://www.en.wikipedia.org/wiki/Bourcier,0,0,0.0,True
+malicious_320311.png,http://sindju.org.br/includes/bl/dhl/index.php,1,1,0.995,True
+benign_2502.png,https://www.en.wikipedia.org/wiki/Charles_Will,0,0,0.0,True
+benign_1479.png,https://www.en.wikipedia.org/wiki/Caleb_Carr,0,0,0.0,True
+malicious_319824.png,http://remotetechs.com/newsite/confirm-your-pa,1,1,1.0,True
+benign_10012.png,https://www.en.wikipedia.org/wiki/Sovereignty,0,0,0.0,True
+benign_13750.png,https://www.espn.go.com/blog/truehoop/post/_/i,0,0,0.0,True
+malicious_318265.png,http://shamstayyar.000webhostapp.com/recovery-,1,1,1.0,True
+malicious_321685.png,http://www.gyrogeo.com/n4/,1,1,1.0,True
+malicious_323293.png,http://down.feiyang163.com/soft/wbjfsys.exe,1,1,1.0,True
+malicious_316369.png,http://cliente-vip.com/bag/,1,1,1.0,True
+benign_19321.png,https://www.fox4kc.com/weather/,0,0,0.015,True
+malicious_319275.png,http://sirovina.com/Aol/alert/update.php,1,1,1.0,True
+benign_18108.png,https://www.fm.berkeley.edu/,0,0,0.0,True
+benign_31499.png,https://www.jacobjenkins.deviantart.com/,0,0,0.01,True
+malicious_322414.png,http://habc.com.br/wp-images/habc1/index.file/,1,1,1.0,True
+malicious_320698.png,http://mtadumps.com/wp-admin/css/purchaseorder,1,1,1.0,True
+malicious_318647.png,http://www.thegloriouschurch.org.za/buss/Googl,1,1,0.995,True
+malicious_318799.png,http://www.hugoyjeanpaul.com/css/3D/bdd8d6f790,1,1,0.965,True
+benign_18827.png,https://www.forums.about.com/ab-german/,0,0,0.0,True
+malicious_316676.png,http://www.hotelsinbharatpur.net/css/alibaba/l,1,1,0.965,True
+malicious_320167.png,http://drop-box.metodistaebenezer.com.br/d29e5,1,1,0.955,True
+malicious_320122.png,http://www.vajinismus.eu/ttyuy/PY/f3a7f6df0177,1,1,1.0,True
+malicious_323178.png,http://slimxxxtubebmq.dnset.com/2013/girl-fuck,1,1,1.0,True
+malicious_321984.png,http://sefti-pegas-malta2016.esy.es/indexx.htm,1,1,0.995,True
+malicious_317066.png,http://app-1506650844.000webhostapp.com/,1,1,1.0,True
+benign_20352.png,https://www.freepages.genealogy.rootsweb.ances,0,0,0.0,True
+benign_15043.png,https://www.ezinearticles.com/?Dune---House-At,0,0,0.0,True
+benign_30559.png,https://www.irishlabour.com/?p=69,0,0,0.0,True
+malicious_318724.png,https://sites.google.com/site/recoveryfbhelpco,1,1,0.98,True
+benign_14364.png,https://www.eucharisticadorationforpriests.blo,0,0,0.455,True
+benign_28872.png,https://www.ideas.repec.org/e/c/pbe35.html,0,0,0.0,True
+malicious_319736.png,http://domowe.com/libraries/legacy/form/field/,1,1,0.99,True
+malicious_322364.png,http://www.legendsmotorcycles.com/eric-su/su/,1,1,1.0,True
+malicious_320705.png,http://autoservicioslubrirepuestos.com/wp-incl,1,1,1.0,True
+benign_18192.png,https://www.food-beverages.exportersindia.com/,0,0,0.02,True
+malicious_321488.png,http://www.emcbilisim.net/AMX/secured/,1,1,1.0,True
+benign_16718.png,https://www.fifthdown.blogs.nytimes.com/2010/0,0,0,0.0,True
+benign_25370.png,https://www.hawaii-five-0.proboards.com/index,0,0,0.06,True
+malicious_319657.png,http://id1016.atspace.co.uk/ID-YOUR-ACCOUNT/,1,1,0.95,True
+malicious_321172.png,http://paypal.com.verifity.cgi-info-account.co,1,1,0.95,True
+malicious_322975.png,http://freefblikes.phpnet.us,1,1,0.99,True
+malicious_319120.png,http://www.hellooyun.com/php/ww2usaa/www32ew/u,1,1,1.0,True
+benign_24193.png,https://www.greenday.warnerbrosrecordsstore.com/,0,0,0.0,True
+malicious_321377.png,http://ringtonsfranchise.co.uk/wp-includes/Sim,1,1,1.0,True
+benign_27351.png,https://www.hometracks.nascar.com/drivers/nwsm,0,0,0.005,True
+benign_18854.png,https://www.forums.azbilliards.com/showthread,0,0,0.0,True
+malicious_319140.png,http://tatarlar.pro/images/usaa-secure/usaa-se,1,1,0.995,True
+malicious_318090.png,http://info02887166ft.000webhostapp.com/Paymen,1,1,1.0,True
+malicious_323102.png,http://slimxxxtubesrw.ddns.name/2013/girl-fuck,1,1,1.0,True
+malicious_316576.png,https://www.bitminershop.net,1,0,0.02,False
+malicious_323042.png,http://tube8vidswtb.ddns.name/2013/girl-fucked,1,1,0.995,True
+benign_19118.png,https://www.forums.radioreference.com/missouri,0,0,0.0,True
+benign_23227.png,https://www.globalgrind.com/music/oneal-mcknig,0,0,0.095,True
+malicious_318501.png,http://biysk.mabix.ru/wp-content/upgrade/index,1,1,1.0,True
+malicious_321681.png,http://smnaftowiec.sanok.biz/grafika/smna/coun,1,1,0.97,True
+malicious_320299.png,http://www.avanet24.ir/secure.pdf/Expenses/,1,1,1.0,True
+benign_16817.png,https://www.filepod.com/?q=columbo+season+2+ep,0,0,0.0,True
+malicious_320980.png,http://www.hlpremoldados.com.br/wp-admin/dropb,1,1,0.985,True
+benign_13375.png,https://www.equallifemusic.com/,0,0,0.28,True
+malicious_322111.png,http://cityofdreams.com.ua/tmp/pa/6jh79zp08x64,1,1,1.0,True
+malicious_316818.png,http://studio-taddei.it/din/New%20folder/Index,1,1,1.0,True
+benign_11721.png,https://www.en.wikipedia.org/wiki/Xiamen,0,0,0.0,True
+benign_17402.png,https://www.financial-dictionary.thefreedictio,0,0,0.035,True
+malicious_317982.png,http://infoactive.000webhostapp.com/Payment-up,1,1,1.0,True
+benign_29973.png,https://www.interceder.net/topic/Ben-Mulroney,0,0,0.01,True
+malicious_320731.png,http://www.nukestudio.org/huoxiaodong.org/newd,1,1,1.0,True
+malicious_319851.png,http://www.futureassociate.com.np/Paypal/secur,1,1,1.0,True
+malicious_319862.png,http://www.ayseresa.com/Charles%20Flesch/,1,1,1.0,True
+benign_27376.png,https://www.homotography.blogspot.com/2011/02/,0,0,0.0,True
+malicious_320912.png,http://bookkeepers.directory/mama/mama/a6cd59d,1,1,1.0,True
+benign_10188.png,https://www.en.wikipedia.org/wiki/Storey_(surn,0,0,0.0,True
+benign_17959.png,https://www.fliiby.com/search.php?q=Ronnie+Wil,0,0,0.01,True
+malicious_320232.png,http://www.csdesigns.co.in/csdesigns/csd-admin,1,1,0.96,True
+benign_22017.png,https://www.genforum.genealogy.com/forrest/all,0,0,0.0,True
+malicious_321591.png,http://www.phistek.com/upload/bookmark/index.p,1,1,1.0,True
+malicious_318060.png,https://kampret002.000webhostapp.com/Payment-u,1,1,0.955,True
+malicious_316941.png,http://team-recovery-program.biz/help/recovery,1,1,1.0,True
+benign_21009.png,https://www.gallery.bonvin.tv/details.php?imag,0,0,0.0,True
+malicious_316816.png,http://www.luskysuites-htl.co.il/img/common/pa,1,1,0.945,True
+malicious_323176.png,http://slimxxxtubebej.dnset.com/2013/girl-fuck,1,1,1.0,True
+malicious_322656.png,http://vvvic.com,1,1,0.97,True
+malicious_319763.png,http://vigilancia.lapaz.bo/http/Outlook-Login,1,1,0.995,True
+benign_17746.png,https://www.fitchfulton.com/,0,0,0.0,True
+malicious_317770.png,http://banking.sparkasse-deutschland-sicherhei,1,1,1.0,True
+benign_30680.png,https://www.isohunt.com/torrent_details/473078,0,0,0.01,True
+benign_1464.png,https://www.en.wikipedia.org/wiki/Cadavres,0,0,0.0,True
+malicious_318614.png,http://estatesinvestors.com/wp-includes/widget,1,1,0.99,True
+synthetic_001.png,http://gcash-verify-account.tk/login,1,1,1.0,True
+benign_20445.png,https://www.freetradebreakfast.eventbrite.com/,0,0,0.0,True
+synthetic_030.png,https://www.grab.com/ph/en/,0,0,0.02,True
+benign_22675.png,https://www.genius-gamepad-maxfire-blaze-drive,0,1,0.715,False
+malicious_323011.png,http://manoske.com/main.php?label=TJaxqKIV0+wl,1,1,1.0,True
+benign_28036.png,https://www.hulkshare.com/91w84syal3qk,0,0,0.0,True
+malicious_320062.png,http://mehirim.com/nl/login/index.php,1,1,1.0,True
+benign_25023.png,https://www.halcyonicfalconx.newgrounds.com/,0,0,0.005,True
+malicious_319978.png,http://www.sarminiatures.com/Insurance/Insuran,1,1,1.0,True
+benign_11683.png,https://www.en.wikipedia.org/wiki/Wolf_Blitzer,0,0,0.0,True
+benign_16784.png,https://www.filecraft.com/?q=anke+engelke+nippel,0,0,0.0,True
+malicious_320221.png,https://bbrasilclientescadas.websiteseguro.com,1,1,0.61,True
+malicious_320251.png,http://www.erncchile.cl/drop/Gdoccc/index.php,1,1,1.0,True
+benign_2029.png,https://www.en.wikipedia.org/wiki/Category:Fil,0,0,0.0,True
+benign_21200.png,https://www.gardening.about.com/u/ua/rose1/Rea,0,0,0.135,True
+malicious_320413.png,http://www.indianfriedchicken.net/managment/pa,1,1,1.0,True
+malicious_320643.png,http://www.redboxtraining.com/Tutorials/settin,1,1,1.0,True
+benign_28300.png,https://www.iamcomic.wetpaint.com/,0,0,0.0,True
+malicious_320130.png,http://apcs.edu.pl/images/dz.html,1,1,0.995,True
+benign_18717.png,https://www.forum.robotevents.com/design/,0,0,0.005,True
+malicious_317921.png,https://sites.google.com/site/protectionoffice,1,1,0.98,True
+malicious_321228.png,http://distribuidorasantana.com/dbox3/index.ph,1,1,1.0,True
+benign_27411.png,https://www.hoodedutilitarian.com/2010/03/old-,0,1,0.605,False
+malicious_318644.png,http://professionalcommunications.ca/entr3500/,1,1,1.0,True
+benign_26347.png,https://www.historical-births.blogspot.com/201,0,0,0.0,True
+malicious_321227.png,http://adicon.com.cn/images/qkfiles/201507/Hom,1,1,0.995,True
+malicious_317191.png,http://donar.fundacionmarialuisa.org/es/ezee/o,1,1,0.995,True
+benign_28537.png,https://www.icehockey.wikia.com/wiki/Cory_Pecker,0,0,0.0,True
+benign_28956.png,https://www.idolator.com/5686082/the-black-eye,0,0,0.49,True
+benign_14761.png,https://www.everything.explained.at/contents/l,0,0,0.0,True
+synthetic_034.png,https://www.philstar.com/,0,0,0.0,True
+benign_22489.png,https://www.genforum.genealogy.com/ringo/,0,0,0.0,True
+benign_27225.png,https://www.homepages.rootsweb.ancestry.com/~m,0,0,0.0,True
+benign_13028.png,https://www.english.turkcebilgi.com/Politics+o,0,0,0.0,True
+benign_31662.png,https://www.jancoks.blogspot.com/,0,0,0.0,True
+benign_15218.png,https://www.fabpedigree.com/s028/f325401.htm,0,0,0.005,True
+benign_31892.png,https://www.jazztimes.com/articles/19894-marcu,0,0,0.0,True
+benign_24916.png,https://www.h2g2.com/dna/h2g2/classic/A810316,0,0,0.16,True
+malicious_317288.png,https://wwwpages093.000webhostapp.com/recovery,1,1,0.955,True
+malicious_322377.png,http://www.cocinacocina.com/img/,1,1,0.975,True
+benign_11646.png,https://www.en.wikipedia.org/wiki/William_Warner,0,0,0.0,True
+malicious_321804.png,http://www.monfactufree.com/freemobilemoncompt,1,1,0.995,True
+malicious_322745.png,http://luwyou.com/photos.php,1,1,0.995,True
+malicious_321221.png,http://www.jilliandco.com/rem/google_doc%20(2),1,1,0.995,True
+malicious_316665.png,https://sites.google.com/site/helpunblockingin,1,1,0.98,True
+malicious_322481.png,http://admin.twinstoresz.com/c2a8da9c931f3e10b,1,1,1.0,True
+benign_32739.png,https://www.johnmacfarlane.net/church.html,0,0,0.015,True
+malicious_320330.png,http://www.simpledentremoval.com.au/wp-content,1,1,0.99,True
+benign_16208.png,https://www.fantasyhockey.usatoday.com/content,0,0,0.0,True
+benign_21173.png,https://www.gapellet.brinkster.net/charlesdesc,0,0,0.01,True
+malicious_322541.png,http://nordiccountry.cz,1,1,1.0,True
+malicious_320874.png,http://www.jafra.ae/wp-includes/dropbox/dropbo,1,1,0.985,True
+benign_18367.png,https://www.ford-econoline.blogspot.com/,0,0,0.005,True
+malicious_316508.png,http://infinitythoughts.com/xlogic/invoice/inv,1,1,0.995,True
+malicious_319973.png,http://appleid.apple.com-subscriptions.manager,1,1,0.985,True
+benign_2516.png,https://www.en.wikipedia.org/wiki/Charlie_Beamon,0,0,0.0,True
+benign_17799.png,https://www.flaggedrevs.labs.wikimedia.org/wik,0,0,0.0,True
+benign_16474.png,https://www.federal-circuits.vlex.com/vid/wsb-,0,0,0.015,True
+malicious_321128.png,http://hiroba.dqx.jp.imxzl.usa.cc/account/app/,1,1,1.0,True
+malicious_321104.png,http://mundoseco.com.br/tec,1,1,1.0,True
+benign_2116.png,https://www.en.wikipedia.org/wiki/Category:Liv,0,0,0.0,True
+malicious_320034.png,http://auth01.secure.server.chase.verification,1,1,1.0,True
+synthetic_009.png,http://bdo-secure-login.work/otp,1,1,1.0,True
+malicious_320916.png,http://www.pt-ssi.com/plugins/user/reviewonlin,1,1,1.0,True
+benign_1896.png,https://www.en.wikipedia.org/wiki/Category:Chi,0,0,0.0,True
+malicious_321885.png,http://www.safetem.com/fcid/confirm.php?cmd=lo,1,1,1.0,True
+benign_27751.png,https://www.houle.familytreeguide.com/getperso,0,0,0.0,True
+benign_15808.png,https://www.familytreemaker.genealogy.com/user,0,0,0.0,True
+benign_32882.png,https://www.jonleeellis.com/,0,0,0.005,True
+benign_32960.png,https://www.joshmartincountry.com/,0,0,0.005,True
+malicious_317502.png,http://computer-32nf2.stream/view/,1,1,1.0,True
+malicious_321062.png,http://ns1.globalwebhost.com.ng/~diadem/images,1,1,1.0,True
+benign_32170.png,https://www.jeopardylabs.com/,0,0,0.005,True
+malicious_320672.png,http://www.vitamia-nahrungsergaenzung.de/mails,1,1,0.995,True
+malicious_322354.png,http://www.bd-dispatch.co.uk/media/jce/Zone1/Z,1,1,0.945,True
+benign_20756.png,https://www.fullcomment.nationalpost.com/2011/,0,0,0.0,True
+malicious_320214.png,http://inversionencatalunya.es/https:/atendime,1,1,1.0,True
+malicious_322965.png,http://directxex.com/uploads/1803412028.mintt.exe,1,1,1.0,True
+benign_12025.png,https://www.en.wordpress.com/tag/alfre-woodard/,0,0,0.005,True
+malicious_319875.png,http://www.lecznica-nowysacz.pl/verify/id/welc,1,1,0.975,True
+benign_20662.png,https://www.fsntopnews.blogspot.com/,0,0,0.0,True
+malicious_318671.png,http://saralaska.org/grafiks/gdoc-secure/7867b,1,1,0.995,True
+malicious_317819.png,https://www.sunsetevents.ae/my_code/ext/my_dat,1,0,0.02,False
+malicious_318051.png,http://protects-155.000webhostapp.com/payment-,1,1,0.995,True
+benign_28570.png,https://www.icehockey.wikia.com/wiki/Gilbert_D,0,0,0.0,True
+synthetic_029.png,https://www.lazada.com.ph/,0,0,0.0,True
+malicious_319328.png,http://secure.square.logindqxe.usa.cc/account/,1,1,0.985,True
+benign_29665.png,https://www.infomotions.com/etexts/gutenberg/d,0,0,0.14,True
+benign_1710.png,https://www.en.wikipedia.org/wiki/Category:198,0,0,0.0,True
+benign_20750.png,https://www.fullcomment.nationalpost.com/2011/,0,0,0.0,True
+malicious_321248.png,http://www.pousadavieiras.com.br/sqqq/boa/,1,1,0.985,True
+benign_11173.png,https://www.en.wikipedia.org/wiki/V_sign,0,0,0.0,True
+benign_17411.png,https://www.financial-dictionary.thefreedictio,0,0,0.035,True
+malicious_320031.png,http://recont.sovancobellara.com/5fdb1910bd7ae,1,1,0.99,True
+malicious_317088.png,https://www.mountzioncc.org.uk/rida/customer_c,1,0,0.0,False
+benign_21776.png,https://www.genforum.genealogy.com/boudreau/pa,0,0,0.0,True
+malicious_321400.png,http://almomahidin.net/AA/bb/1/6/index.html?bi,1,1,1.0,True

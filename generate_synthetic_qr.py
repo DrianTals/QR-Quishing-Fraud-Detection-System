@@ -19,10 +19,10 @@ import os
 
 import qrcode
 
-SYNTHETIC_CSV = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\synthetic_ph_urls.csv"
-REAL_MANIFEST = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_clean.csv"
-OUTPUT_MANIFEST = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_with_synthetic.csv"
-IMAGE_OUTPUT_ROOT = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw\qr_images_sample"
+SYNTHETIC_CSV = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\synthetic_ph_urls.csv"
+REAL_MANIFEST = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_clean.csv"
+OUTPUT_MANIFEST = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_with_synthetic.csv"
+IMAGE_OUTPUT_ROOT = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\raw\qr_images_sample"
 
 
 def generate_qr_image(url, out_path):
@@ -51,7 +51,7 @@ def main():
                 "url": row["url"],
                 "decode_status": "ok",
                 "ph_brand_mentioned": "",  # left blank here; your PH-brand filter step tags this later
-                "source": "synthetic_ai",
+                "source": row.get("source") or "synthetic_ai",
             })
 
     # 2. Load real dataset rows, tag them as real

@@ -5,7 +5,7 @@ path_depth, based on the real distribution -- instead of guessing.
 
 import pandas as pd
 
-FEATURES_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\features.csv"
+FEATURES_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\features.csv"
 
 df = pd.read_csv(FEATURES_PATH)
 

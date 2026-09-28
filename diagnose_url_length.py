@@ -9,8 +9,8 @@ dataset was assembled rather than a genuine phishing pattern.
 
 import pandas as pd
 
-FEATURES_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\features.csv"
-MANIFEST_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_with_synthetic.csv"
+FEATURES_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\features.csv"
+MANIFEST_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_with_synthetic.csv"
 
 df = pd.read_csv(FEATURES_PATH)
 manifest = pd.read_csv(MANIFEST_PATH)[["filename", "source"]]

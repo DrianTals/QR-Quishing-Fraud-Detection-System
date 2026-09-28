@@ -20,14 +20,16 @@ import shutil
 
 import cv2
 
+from url_utils import extract_url_candidate
+
 # ---------------- CONFIG — edit these paths ----------------
-BENIGN_SRC = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw\benign\benign\benign"
-MALICIOUS_SRC = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw\malicious\malicious"
+BENIGN_SRC = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\raw\benign\benign\benign"
+MALICIOUS_SRC = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\raw\malicious\malicious"
 
 SAMPLE_SIZE_PER_CLASS = 750            # adjust as needed (500-1000 is plenty)
 
-OUTPUT_DIR = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw\qr_images_sample"
-MANIFEST_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw\qr_manifest.csv"
+OUTPUT_DIR = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\raw\qr_images_sample"
+MANIFEST_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\raw\qr_manifest.csv"
 # -------------------------------------------------------------
 
 qr_detector = cv2.QRCodeDetector()
@@ -48,7 +50,7 @@ def decode_qr(image_path):
             return "", "error:could_not_read_image"
         data, points, _ = qr_detector.detectAndDecode(img)
         if data:
-            return data, "ok"
+            return extract_url_candidate(data), "ok"
         return "", "no_qr_detected"
     except Exception as e:
         return "", f"error:{e}"

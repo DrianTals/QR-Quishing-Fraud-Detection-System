@@ -14,8 +14,8 @@ Output: data/processed/qr_manifest_clean.csv
 import csv
 import os
 
-MANIFEST_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\raw\qr_manifest.csv"
-OUTPUT_PATH = r"C:\Users\User\Desktop\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_clean.csv"
+MANIFEST_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\raw\qr_manifest.csv"
+OUTPUT_PATH = r"C:\Users\Test\Desktop\Github Repositories\QR-Quishing-Fraud-Detection-System\data\processed\qr_manifest_clean.csv"
 
 PH_BRANDS = [
     "gcash", "paymaya", "maya", "bpi", "bdo", "metrobank",

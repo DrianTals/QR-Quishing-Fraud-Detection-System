@@ -7,6 +7,7 @@ A capstone project that builds and evaluates a machine learning model for detect
 
 ## Table of Contents
 - [Overview](#overview)
+- [Run the Project Step by Step](#run-the-project-step-by-step)
 - [Project Outline](#project-outline)
 - [Requirements](#requirements)
   - [Datasets](#datasets)
@@ -25,6 +26,117 @@ A capstone project that builds and evaluates a machine learning model for detect
 ## Overview
 
 QR codes are now routine in the Philippines — e-wallet payments, restaurant menus, government forms — and quishing exploits that trust by embedding malicious links inside QR codes, often bypassing conventional URL-based phishing filters. This project trains an ML classifier to flag risky QR-embedded links and wraps it in a usable scanning app, then validates both the model's accuracy and the app's usability with real users.
+
+## Run the Project Step by Step
+
+Run these commands from the repository root in PowerShell. The full data pipeline starts with QR image files; if you already have a current `data/processed/features.csv`, skip steps 2–6 and continue at model training.
+
+Run only the commands inside the PowerShell code blocks; the surrounding text explains what each command does.
+
+### 1. Set up Python
+
+Create a virtual environment and install the project dependencies:
+
+```powershell
+py -m venv .venv
+$Python = ".\.venv\Scripts\python.exe"
+& $Python -m pip install --upgrade pip
+& $Python -m pip install -r requirements.txt
+```
+
+If the `py` launcher is unavailable, use `python -m venv .venv` for the first command.
+
+### 2. Prepare QR image inputs
+
+Place the source images in the folders configured in `sample_and_decode_qr.py`:
+
+- Benign images: `data/raw/benign/benign/benign/`
+- Malicious images: `data/raw/malicious/malicious/`
+
+Each folder should contain `.png`, `.jpg`, or `.jpeg` QR images. If your images are stored elsewhere, update `BENIGN_SRC` and `MALICIOUS_SRC` in that script before running it.
+
+### 3. Decode the QR images
+
+```powershell
+& $Python sample_and_decode_qr.py
+```
+
+This samples up to 750 images per class, decodes the QR contents, copies the sampled images into `data/raw/qr_images_sample/`, and writes `data/raw/qr_manifest.csv`. The manifest records the label, extracted URL, and decode status.
+
+### 4. Clean and tag the manifest
+
+```powershell
+& $Python clean_and_tag_ph_brands.py
+```
+
+This drops failed decodes, tags Philippine brand mentions, and writes `data/processed/qr_manifest_clean.csv`.
+
+### 5. Add synthetic examples
+
+```powershell
+& $Python generate_synthetic_qr.py
+```
+
+This reads `synthetic_ph_urls.csv` and the clean manifest, generates synthetic QR images, and writes the merged `data/processed/qr_manifest_with_synthetic.csv`.
+
+### 6. Extract URL features
+
+```powershell
+& $Python extract_features.py
+```
+
+This normalizes decoded text to its embedded URL, extracts model features, and writes `data/processed/features.csv`.
+
+### 7. Train and evaluate the Random Forest
+
+```powershell
+& $Python train_random_forest.py
+```
+
+This trains the classifier using a stratified 80/20 train/test split and saves `model/random_forest.pkl` plus held-out row predictions in `data/processed/ml_evaluation_results.csv`. Metrics, a threshold sweep, and feature importances are printed in the terminal.
+
+To test training without replacing those default outputs, specify separate destinations:
+
+```powershell
+& $Python train_random_forest.py --model-output model/test_random_forest.pkl --results-output data/processed/test_predictions.csv
+```
+
+### 8. Check the saved Random Forest accuracy
+
+```powershell
+& $Python evaluate_random_forest.py
+```
+
+This loads the saved model and evaluates it on the same reproducible stratified 80/20 holdout used during training. It prints accuracy as a percentage, along with balanced accuracy, precision, malicious recall, F1, false-positive rate, ROC AUC, and the confusion matrix. It does not retrain the model or overwrite the saved model. This random-holdout score is not a guarantee of performance on new domains or live phishing URLs.
+
+### 9. Optionally evaluate the rule-based baseline
+
+```powershell
+& $Python evaluate_rule_based.py
+```
+
+This writes `data/processed/evaluation_results.csv`. It is a separate rule-based research baseline; the browser scanner uses the Random Forest model.
+
+### 10. Optionally validate against fresh URLs
+
+Fetch the latest PhishTank sample, then run the external validation script:
+
+```powershell
+& $Python fetch_live_phishtank_sample.py
+& $Python validate_on_unseen_data.py
+```
+
+The validation script also checks a small list of known legitimate sites. The PhishTank page scraper may capture unrelated page links, so inspect the sample before interpreting the result. `fetch_live_phishing_sample.py` separately saves up to 15 OpenPhish URLs for manual scanner testing; it is not part of model training. Treat these live URLs as text only and never open them.
+
+### 11. Start the scanner
+
+```powershell
+& $Python server.py
+```
+
+Open `http://127.0.0.1:8765` in a browser. Upload a QR image, scan with the camera, or paste a URL. QR decoding happens in the browser; the extracted text is sent to the local API for feature extraction and Random Forest prediction. The API does not fetch or open the submitted URL. Stop the server with `Ctrl+C`.
+
+**Path note:** Several data-pipeline scripts still contain absolute paths for this Windows checkout. If you move or clone the repository to a different location, update the path constants near the top of those scripts before running the pipeline.
 
 ---
 
@@ -94,11 +206,11 @@ QR codes are now routine in the Philippines — e-wallet payments, restaurant me
 - **Google Colab or Jupyter** — training environment (Colab's free GPU tier is usually enough)
 - **`qrcode`** (Python) — generate QR images from URLs
 - **`pyzbar` / `opencv-python`** or **`jsQR`** (JS) — decode QR images
-- **Flask or FastAPI** — optional backend to serve the trained model to the app
+- **Python standard library `http.server`** — serves the scanner and local prediction API
 - **Git/GitHub** — version control
 
 ### Frontend / App
-- **Web-based**: HTML/CSS/JS or React (see `/app` — a working scanner SPA prototype)
+- **Web-based**: `index.html` is the scanner UI; `server.py` serves it and provides local Random Forest predictions.
 - **Native mobile**: Flutter or React Native, with the trained model exported to **TensorFlow Lite** for on-device inference
 - **Architecture decision to make early**: on-device model (offline, faster, harder to deploy/update) vs. API call to a hosted model (easier to update, needs internet + hosting)
 
@@ -144,4 +256,4 @@ Two different things this could mean — decide which applies to your project:
 ---
 
 ## Status
-🚧 In progress — outline and prototype scanner UI complete; dataset collection and model training in progress.
+🚧 In progress — the QR-to-feature pipeline and local Random Forest scanner are implemented. Broader independent validation and user testing are still needed before treating the reported metrics as general performance.
