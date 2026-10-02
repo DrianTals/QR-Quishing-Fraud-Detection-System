@@ -7,6 +7,7 @@ A capstone project that builds and evaluates a machine learning model for detect
 
 ## Table of Contents
 - [Overview](#overview)
+- [How the Web Scanner Works](#how-the-web-scanner-works)
 - [Run the Project Step by Step](#run-the-project-step-by-step)
 - [Project Outline](#project-outline)
 - [Requirements](#requirements)
@@ -26,6 +27,16 @@ A capstone project that builds and evaluates a machine learning model for detect
 ## Overview
 
 QR codes are now routine in the Philippines — e-wallet payments, restaurant menus, government forms — and quishing exploits that trust by embedding malicious links inside QR codes, often bypassing conventional URL-based phishing filters. This project trains an ML classifier to flag risky QR-embedded links and wraps it in a usable scanning app, then validates both the model's accuracy and the app's usability with real users.
+
+## How the Web Scanner Works
+
+The scanner can read a QR code from an uploaded image or from your device camera:
+
+1. The browser uses the `jsQR` decoder to read the QR code and extract its text. Camera use requires permission from your browser.
+2. The extracted text is sent to the locally running Python server. The server normalizes it to a URL and extracts features such as HTTPS usage, domain structure, and suspicious keywords.
+3. The saved Random Forest model evaluates those features and returns a risk score, verdict, and detected signals for the page to display.
+
+The QR image and camera frames are processed in the browser. Only the decoded text is sent to the local API, and the API analyzes the URL as text without opening or fetching it. A result is a risk estimate, not a guarantee that a link is safe or malicious.
 
 ## Run the Project Step by Step
 
